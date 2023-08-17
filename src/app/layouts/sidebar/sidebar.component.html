@@ -1,0 +1,27 @@
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav " id="sidebar-nav">
+       <li class="nav-item"> <a class="nav-link " routerLink="/dashboard"> <i class="bi bi-grid"></i> <span>Dashboard</span> </a></li>
+
+       <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-layout-text-window-reverse"></i><span>Exercice Budétaire</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+             <li> <a routerLink="/tables-data"> <i class="bi bi-circle"></i><span>Ajouter</span> </a></li>
+             <!-- <li> <a routerLink="/tables-general"> <i class="bi bi-circle"></i><span>Département</span> </a></li> -->
+             <!-- <li> <a routerLink="/list-odd"> <i class="bi bi-circle"></i><span>ODD</span> </a></li> -->
+             <li> <a routerLink="/mettre_jour"> <i class="bi bi-circle"></i><span>Mettre à Jour</span> </a></li>
+
+             <li> <a routerLink="/consulter"> <i class="bi bi-circle"></i><span>consulter</span> </a></li>
+
+          </ul>
+       </li>
+
+       <!-- <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-na" data-bs-toggle="collapse" href="#"> <i class="bi bi-layout-text-window-reverse"></i><span>ODD</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+        <ul id="tables-na" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+           <li> <a routerLink="/etq-odd"> <i class="bi bi-circle"></i><span>Étiquetage</span> </a></li>
+           <li> <a routerLink="/list-odd"> <i class="bi bi-circle"></i><span>Budget</span> </a></li>
+
+        </ul>
+     </li> -->
+    </ul>
+ </aside>

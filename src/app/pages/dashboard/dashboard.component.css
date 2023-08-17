@@ -1,0 +1,29 @@
+.custom-button {
+  padding: 10px 20px;
+  background-color: #2e76ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.custom-button:hover {
+  background-color: #0059ff;
+
+}
+
+
+#main {
+  margin-top: 60px;
+  padding: 20px 10px;
+  transition: all 0.3s;
+}
+
+
+img, svg {
+  vertical-align: middle;
+  height: 166%;
+}
+

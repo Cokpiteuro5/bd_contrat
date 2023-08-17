@@ -1,0 +1,130 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Dashboard</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+           <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+     </nav>
+  </div>
+  <section class="section dashboard">
+     <div class="row">
+        <div class="col-lg-12">
+           <div class="row">
+
+            <div class="col-md-3">
+              <div class="card info-card sales-card">
+                <div class="filter"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Budget Global <span>| Personnel</span></h5>
+                  <div class="d-flex align-items-center">
+                    <!-- Replace the <i> tag with the <img> tag -->
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="assets\img\dirham.png.png" alt="Currency Dollar Icon">
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ formatNumber(globalSum?.sumCrdPersonnel) }}</h6>
+                      <hr>
+                      <p>{{ globalSum?.sumCrdPersonnel | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-3">
+              <div class="card info-card sales-card">
+                <div class="filter"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Budget Global <span>| Matériel & diverses</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="assets\img\dirham.png.png" alt="Currency Dollar Icon">
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ formatNumber(globalSum?.sumCrdMateriel) }}</h6>
+                      <hr>
+                      <p>{{ globalSum?.sumCrdMateriel | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card info-card sales-card">
+                <div class="filter"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Budget Global <span>| Crédits de paiement</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="assets\img\dirham.png.png" alt="Currency Dollar Icon">
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ formatNumber(globalSum?.sumCrdPaiement) }}</h6>
+                      <hr>
+                      <p>{{ globalSum?.sumCrdPaiement | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card info-card sales-card">
+                <div class="filter"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Budget Global <span>| Engagement</span></h5>
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <img src="assets\img\dirham.png.png" alt="Currency Dollar Icon">
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{ formatNumber(globalSum?.sumCrdEngagement) }}</h6>
+                      <hr>
+                      <p>{{ globalSum?.sumCrdEngagement | number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+              <div class="col-12">
+
+                <!-- <div class=" mY-3 mb-4">
+                  <button class="custom-button" (click)="toggleCard()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M17 17h-1.559l-9.7-10.673A1 1 0 0 0 5.001 6H2v2h2.559l4.09 4.5-4.09 4.501H2v2h3.001a1 1 0 0 0 .74-.327L10 13.987l4.259 4.686a1 1 0 0 0 .74.327H17v3l5-4-5-4v3z"></path><path d="M15.441 8H17v3l5-3.938L17 3v3h-2.001a1 1 0 0 0-.74.327l-3.368 3.707 1.48 1.346L15.441 8z"></path></svg>
+                    Département/Région
+                  </button>
+                </div> -->
+
+
+                <div class="card">
+                  <app-chart-data [itemchart1]="chartData1"></app-chart-data>
+                </div>
+
+                <!-- <div *ngIf="!showFirstCard">
+                  <app-second-chart-data [itemchart2]=""></app-second-chart-data>
+                </div> -->
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <app-third-chart-data [itemchart3]=""></app-third-chart-data>
+                  </div>
+                  <div class="col-md-6">
+                    <app-fourth-chart-data [itemchart4]=""></app-fourth-chart-data>
+                  </div>
+                </div>
+
+
+
+                </div>
+              </div>
+            </div>
+     </div>
+
+  </section>
+</main>

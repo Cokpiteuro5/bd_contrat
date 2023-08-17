@@ -1,0 +1,125 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Ajouter Une Initiative</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item" hidden><a routerLink="/">Home</a></li>
+           <li class="breadcrumb-item" hidden>Tables</li>
+           <li class="breadcrumb-item active" hidden>Morasse budgétaire</li>
+        </ol>
+     </nav  >
+  </div >
+
+
+  <app-programme></app-programme>
+
+
+
+
+
+
+</main>
+
+<div class="card-body">
+  <div class="modal fade" id="verticalycentered" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New project</h5>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform:msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+        </div>
+        <div class="modal-body text-center">
+          <div class="drop-container" >
+            <form  enctype="multipart/form-data"   [formGroup]="poppupprojetForm" (ngSubmit)="onSubmitprojectpopup()"  >
+             <div class="row text-center">
+
+              <div class="newprojet">
+                <label>Lead : </label>
+                <input type="text" formControlName="nomLe">
+              </div>
+
+              <div  class="newprojet" >
+                <label>enjeux :</label>
+                <input type="text" formControlName="nomEn">
+
+
+            </div>
+
+            <div  class="newprojet">
+              <label>nature programme :</label>
+              <input type="text" formControlName="nomNt">
+
+
+            </div >
+            <div  class="newprojet">
+              <label>type Agile :</label>
+              <input type="text" formControlName="nom">
+
+
+            </div>
+            <div  class="newprojet" >
+              <label>priorité :</label>
+              <input type="text" formControlName="nomPr">
+
+
+            </div>
+
+            <div  class="newprojet">
+              <label>type d'investissement :</label>
+              <input type="text" formControlName="nominvestisement">
+
+
+            </div>
+
+
+            <div  class="newprojet" >
+              <label>Programme :</label>
+              <input type="text" formControlName="nomprog">
+
+
+            </div>
+
+
+
+             </div>
+
+
+
+            </form>
+
+
+
+        </div>
+        <div class="modal-footer">
+
+
+          <button class="btn btn-primary" aria-label="Close" type="submit"  (click)="onSubmitprojectpopup()"data-bs-dismiss="modal">
+            Enregistrer
+          </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

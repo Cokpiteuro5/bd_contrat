@@ -1,0 +1,291 @@
+
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Département</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+           <li class="breadcrumb-item">Tables</li>
+           <li class="breadcrumb-item active">Département</li>
+        </ol>
+
+        <div class=" mY-3 mb-4">
+          <button class="custom-button" (click)="toggleCard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: ;msFilter:;"><path d="M17 17h-1.559l-9.7-10.673A1 1 0 0 0 5.001 6H2v2h2.559l4.09 4.5-4.09 4.501H2v2h3.001a1 1 0 0 0 .74-.327L10 13.987l4.259 4.686a1 1 0 0 0 .74.327H17v3l5-4-5-4v3z"></path><path d="M15.441 8H17v3l5-3.938L17 3v3h-2.001a1 1 0 0 0-.74.327l-3.368 3.707 1.48 1.346L15.441 8z"></path></svg>
+            SIMULATEUR DE CALCUL
+          </button>
+        </div>
+
+
+     </nav>
+  </div>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body" *ngIf="showFirstCard">
+                <div class="row">
+
+                  <div class="col-md-2 mt-3 mb-3">
+                    <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6 mt-3 mb-3">
+                    <input type="text" class="form-control form-control-flush ps-10"
+                    name="search"
+                    [(ngModel)]="search"
+                    (input)="searchDepartement()"
+                    placeholder="Search..." />
+                  </div>
+
+
+
+                  <div class="col-sm-4 col-md-4 text-end mt-3 mb-3">
+
+                    <div class="dt-buttons btn-group flex-wrap">
+
+                        <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#verticalycentered" title="Import">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOtJREFUSEvtlLENwjAQRV8KVqBBQkIU0NBTsQJbwAI0bAAjwCAMQEUNBR0CKRUrUIAO2VJ0EPucKF3cWHbu/rt/SS6j4ZU1rE8qYOEK2lsLSwFMgaMTngEnC8QK6AIXQHZZT2Di9iDHAui4ysVBcYkDcfIKESyAHeB7r7XkXSzrAor5b3ewFPYNNQc64dqAObABxsq2L0QD/NmHX4EVcPAX2kEO9P701AqQ1BswLAPEWpD8XDtIFlBuf/JbgP4earcoNt9aQKxDRFv0APpRmXDAHRiU/ckyi7bAqCLkDKxDs6iibnla6rhOLuADaREyGWG4OkIAAAAASUVORK5CYII=" alt="Import">
+                      </button>
+                      <button class="btn buttons-pdf buttons-html5 me-2" (click)="downloadTemplate()" tabindex="0"
+                        aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                          style="fill: rgba(0, 0, 0, 1);">
+                          <path
+                            d="m12 16 4-5h-3V4h-2v7H8z">
+                          </path>
+                          <path
+                            d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z">
+                          </path>
+                        </svg>
+                      </button>
+                      <button class="btn buttons-print me-2" [routerLink]="['/add-depart']" routerLinkActive="router-link-active"
+                        tabindex="0" aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+                          alt="Print">
+                      </button>
+
+
+                    </div>
+                  </div>
+
+              </div>
+
+
+
+                 <table class="table table-hover table "  >
+                    <thead class="table-primary">
+                       <tr>
+                          <th scope="col">Code</th>
+                          <th scope="col" class="col-md-3">Département</th>
+                          <th scope="col" class="col-md-2">Crédits du personnel</th>
+                          <th scope="col" class="col-md-2">Crédits du matériel</th>
+                          <th scope="col" class="col-md-2">Crédits de paiement</th>
+                          <th scope="col" class="col-md-2">Crédits d'engagement</th>
+                          <th scope="col" class="col-md-1 text-center">Action</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr *ngFor="let de of departement | paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
+                          <td class="text-center">{{ (de.codeDprt) }}</td>
+                          <td>{{ de.nomDprt }}</td>
+                          <td class="text-center">{{ formatNumberWithSpaces(de.crdPersonnel) }}</td>
+                          <td class="text-center">{{ formatNumberWithSpaces(de.crdMateriel) }}</td>
+                          <td class="text-center">{{ formatNumberWithSpaces(de.crdPaiement) }}</td>
+                          <td class="text-center">{{  formatNumberWithSpaces(de.crdEngagement) }}</td>
+                          <td class="text-center">
+                            <div class="button-container d-flex justify-content-center">
+                              <button class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Update" [routerLink]="['/edit-depart',de.id]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path><path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path></svg>                              </button>
+                              <button class="btn"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" (click)="destroyDepartement((de?.id ?? '').toString())">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(188, 6, 6, 1);transform: ;msFilter:;"><path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z"></path></svg>
+                              </button>
+                            </div>
+                          </td>
+                    </tbody>
+                 </table>
+                 <div class="pagination-container ">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+
+
+              <div class="card-body" *ngIf="!showFirstCard">
+
+              <div class="row">
+
+                <div class="col-md-2 mt-3 mb-3">
+                  <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6 mt-3 mb-3">
+                  <input type="text" class="form-control form-control-flush ps-10"
+                  name="search"
+                  [(ngModel)]="search"
+                  (input)="searchDepartement()"
+                  placeholder="Search..." />
+                </div>
+
+
+
+                <div class="col-sm-4 col-md-4 text-end mt-3 mb-3">
+
+                  <div class="dt-buttons btn-group flex-wrap">
+
+                      <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+                      data-bs-target="#verticalycentered" title="Import">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOtJREFUSEvtlLENwjAQRV8KVqBBQkIU0NBTsQJbwAI0bAAjwCAMQEUNBR0CKRUrUIAO2VJ0EPucKF3cWHbu/rt/SS6j4ZU1rE8qYOEK2lsLSwFMgaMTngEnC8QK6AIXQHZZT2Di9iDHAui4ysVBcYkDcfIKESyAHeB7r7XkXSzrAor5b3ewFPYNNQc64dqAObABxsq2L0QD/NmHX4EVcPAX2kEO9P701AqQ1BswLAPEWpD8XDtIFlBuf/JbgP4earcoNt9aQKxDRFv0APpRmXDAHRiU/ckyi7bAqCLkDKxDs6iibnla6rhOLuADaREyGWG4OkIAAAAASUVORK5CYII=" alt="Import">
+                    </button>
+                    <button class="btn buttons-pdf buttons-html5 me-2" (click)="downloadTemplate()" tabindex="0"
+                      aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(0, 0, 0, 1);">
+                        <path
+                          d="m12 16 4-5h-3V4h-2v7H8z">
+                        </path>
+                        <path
+                          d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z">
+                        </path>
+                      </svg>
+                    </button>
+                    <button class="btn buttons-print me-2" [routerLink]="['/add-depart']" routerLinkActive="router-link-active"
+                      tabindex="0" aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+                        alt="Print">
+                    </button>
+
+
+                  </div>
+                </div>
+
+            </div>
+
+
+            <table class="table table-hover table " style="border-collapse: collapse;" >
+             <thead class="table-primary text-center">
+                <tr>
+                   <th scope="col" rowspan="2">Code</th>
+                   <th scope="col" class="col-md-4" rowspan="2">Département</th>
+                   <th scope="col" class="col-md-2" colspan="2">Crédits du personnel</th>
+                   <th scope="col" class="col-md-2" colspan="2">Crédits du matériel</th>
+                   <th scope="col" class="col-md-2" colspan="2">Crédits de paiement</th>
+                   <th scope="col" class="col-md-2" colspan="2">Crédits d'engagement</th>
+                </tr>
+                <tr>
+                 <th >Valeur</th>
+                 <th class="col-md-1">Calculé</th>
+                 <th class="col-md-1">Valeur</th>
+                 <th class="col-md-1">Calculé</th>
+                 <th class="col-md-1">Valeur</th>
+                 <th class="col-md-1">Calculé</th>
+                 <th class="col-md-1">Valeur</th>
+                 <th class="col-md-1">Calculé</th>
+
+                </tr>
+             </thead>
+             <tbody>
+
+                <tr *ngFor="let de of departement ">
+                  <ng-container *ngIf="de.codeDprt !== undefined ">
+                    <ng-container *ngFor="let fe of budgets">
+                      <ng-container *ngIf="fe.Name === de.codeDprt.toString()">
+                        <td class="text-center">{{ (de.codeDprt) }}</td>
+                        <td>{{ de.nomDprt }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdPersonnel === fe.crdPersonnel,'red-background': de.crdPersonnel !== fe.crdPersonnel}" >{{ formatNumberWithSpaces(de.crdPersonnel) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdPersonnel === fe.crdPersonnel,'red-background': de.crdPersonnel !== fe.crdPersonnel}" >{{ formatNumberWithSpaces(fe.crdPersonnel) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdMateriel === fe.crdDiverse,'red-background': de.crdMateriel!== fe.crdDiverse}">{{ formatNumberWithSpaces(de.crdMateriel) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdMateriel === fe.crdDiverse,'red-background': de.crdMateriel!== fe.crdDiverse}">{{ formatNumberWithSpaces(fe.crdDiverse) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdPaiement === fe.crdInvestment,'red-background': de.crdPaiement!== fe.crdInvestment}">{{ formatNumberWithSpaces(de.crdPaiement) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdPaiement === fe.crdInvestment,'red-background': de.crdPaiement!== fe.crdInvestment}">{{ formatNumberWithSpaces(fe.crdInvestment) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdEngagement === fe.crEngagement,'red-background': de.crdEngagement!== fe.crEngagement}">{{ formatNumberWithSpaces(de.crdEngagement) }}</td>
+                              <td class="text-center" [ngClass]="{'text-center': true,'green-background': de.crdEngagement === fe.crEngagement,'red-background': de.crdEngagement!== fe.crEngagement}">{{ formatNumberWithSpaces(fe.crEngagement) }}</td>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </tr>
+             </tbody>
+          </table>
+         </div>
+
+     </div>
+
+        </div>
+     </div>
+  </section>
+</main>
+
+
+<!-- <main id="main" class="main">
+  <section class="section">
+    <div class="row">
+       <div class="col-lg-12">
+
+    </div>
+  </div>
+  </section>
+</main> -->
+
+
+
+
+
+<div class="card-body">
+  <div class="modal fade" id="verticalycentered" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Choose File</h5>
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+        </div>
+        <div class="modal-body text-center">
+          <div class="drop-container" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onFileDrop($event)">
+            <div class="drop-message" *ngIf="!fileSelected" (click)="browseFile()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 30 30" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M13 19v-4h3l-4-5-4 5h3v4z"></path><path d="M7 19h2v-2H7c-1.654 0-3-1.346-3-3 0-1.404 1.199-2.756 2.673-3.015l.581-.102.192-.558C8.149 8.274 9.895 7 12 7c2.757 0 5 2.243 5 5v1h1c1.103 0 2 .897 2 2s-.897 2-2 2h-3v2h3c2.206 0 4-1.794 4-4a4.01 4.01 0 0 0-3.056-3.888C18.507 7.67 15.56 5 12 5 9.244 5 6.85 6.611 5.757 9.15 3.609 9.792 2 11.82 2 14c0 2.757 2.243 5 5 5z"></path></svg>
+              <p>Drag and drop file here, or</p>
+              <p>Click to browse</p>
+            </div>
+            <div class="drop-message" *ngIf="fileSelected">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 30 30" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+              <p>File selected:</p>
+              <p>{{ selectedFile?.name }}</p>
+            </div>
+            <input type="file" class="form-control" (change)="onFileChange($event)" (click)="fileInput.click()" #fileInput hidden />
+          </div>
+          <div class="text-center" *ngIf="loading">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <!-- <button class="btn btn-primary" aria-label="Close" type="button" (click)="uploadFile()" [disabled]="!fileSelected">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 18 4-5h-3V2h-2v11H8z"></path><path d="M19 9h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2z"></path></svg>
+            Import
+          </button> -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" aria-label="Close" type="button" (click)="downloadTemplate2()" data-bs-dismiss="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 18 4-5h-3V2h-2v11H8z"></path><path d="M19 9h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2z"></path></svg>
+            Download Template
+          </button>
+          <button class="btn btn-primary" aria-label="Close" type="button" (click)="uploadFile()" [disabled]="!fileSelected" data-bs-dismiss="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 18 4-5h-3V2h-2v11H8z"></path><path d="M19 9h-4v2h4v9H5v-9h4V9H5c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2z"></path></svg>
+            Enregistrer
+          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

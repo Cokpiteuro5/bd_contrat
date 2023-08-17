@@ -1,0 +1,37 @@
+export interface Projet {
+  id?: number;
+  nom?: string | '';
+  programme_id?: number | null;
+  user_id?: number | null;
+  ref_wave_id?: string | null;
+  lead_id?: number | null;
+  annee_id?: number | null;
+  enjeux_id?: number | null;
+  phase_id?: number | null;
+  type_investisement_id?: number | null;
+  priorite_id?: number | null;
+  nature_programme_id?: number | null;
+  type_agile_id?: number | null;
+  type?: boolean;
+  sdi?: boolean;
+  top_15?: boolean;
+  filiale?: boolean;
+  reconduction_annee_prochaine?: boolean;
+  initiative_anne_en_cours?: boolean;
+  urban_sociale_techno?: boolean;
+  hors_feuille_de_route?: boolean;
+  transverse?: boolean;
+  action_en_cours?: boolean;
+  dematerialisation?: boolean;
+  digital?: boolean;
+  description?: string | null;
+  actions?: string | null;
+  copro_1?: string | null;
+  copro_2?: string | null;
+  date_lancement?: Date | null;
+  date_cloture?: Date | null;
+  ref_sciforma?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date | null;
+}

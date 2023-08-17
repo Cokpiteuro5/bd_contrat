@@ -1,0 +1,345 @@
+<form  class="section">
+  <ng-container *ngIf="userprofil === 'admin'">
+  <div *ngIf="userprofil == 'admin'" class="d-flex justify-content-end mb-3">
+    <div class="dt-buttons btn-group flex-wrap">
+      <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+        data-bs-target="#verticalycenteredCTB" title="Import">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+        alt="Import">
+      </button>
+      </div>
+      </div>
+    </ng-container>
+
+
+      <div *ngIf="userprofil == 'DG'" class="d-flex justify-content-end mb-3">
+        <div class="dt-buttons btn-group flex-wrap">
+          <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+            data-bs-target="#verticalycenteredBJH" title="Import">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+            alt="Import">
+          </button>
+          </div>
+          </div>
+          <form  [formGroup]="newone" (ngSubmit)="saveBudgetsData()">
+  <h1 >2.1. Budget J/h : </h1>
+  <ng-container *ngIf="userprofil === 'DG'">
+
+
+          <div class="row Budget  ">
+
+              <div class="col-md-2" *ngFor="let budgetItem of budgetsOfOneEntite">
+              <div class="Budgets">
+                <label class="CORPO">Solutions/{{ budgetItem.nom }}</label>
+
+                <div class="card-copro">
+                  <ul *ngIf="!budgetItem.type">
+                    <li>
+                      <span class="form-check-label">Interne:</span>
+                      <input class="form-control" type="text" id="width-input" [value]="budgetItem.interne" />
+                    </li>
+                    <li>
+                      <span class="form-check-label">Externe:</span>
+                      <input class="form-control" type="text" id="width-input"  [value]="budgetItem.externe" />
+                    </li>
+
+                  </ul>
+                  <ul *ngIf="budgetItem.type">
+                    <li>
+                      <span class="form-check-label">regie</span>
+                      <input class="form-control" type="text" id="width-input" [value]="budgetItem.regie" />
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+        </ng-container>
+
+
+
+  <h2 >2.2. Budget CTB :  </h2>
+
+  <div *ngIf="userprofil == 'admin'" class="d-flex justify-content-end mb-3">
+    <div class="dt-buttons btn-group flex-wrap">
+      <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+        data-bs-target="#verticalycenteredCTB2" title="Import">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+          alt="Import">
+      </button>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="lead">
+
+          <label class="Régie">Régie :</label>
+          <div>
+            <input class="form-control" type="text" formControlName="regieValue" [value]="totalValue" id="regieInput"  placeholder="0" readonly />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div>
+
+
+
+      <div class="col">
+        <div class="lead">
+          <label class="Régie">Contrib &SGABS :</label>
+          <div>
+            <input class="form-control" type="text" formControlName="contribValue" [value]="totalregievalue"  placeholder="0" readonly />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div>
+
+      <div class="col" *ngFor="let budgetctb of formDataArray" >
+        <div class="lead">
+          <label class="Régie">{{budgetctb.nom}}</label>
+          <div>
+            <input class="form-control" type="text" (change)="updatectb($event, budgetctb.id)" [value]="budgetctb.sans_interne" placeholder="0" >          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div>
+
+      <!-- <div class="col">
+        <div class="lead">
+          <label class="Régie">Logiciel :</label>
+          <div>
+            <input class="form-control" type="text"  placeholder="0" />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+
+      <!-- <div class="col"  >
+        <div class="lead">
+          <label class="Régie">Matériel :</label>
+          <div>
+            <input class="form-control" type="text" formControlName="materielValue"  placeholder="0" />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+    </div>
+
+
+
+
+  <h3 >2.3. Commentaire sur la répartition budgétaire : </h3>
+
+
+  <div class="row  ">
+
+    <div class=" col-md-10 ">
+
+
+      <div class="form-group green-border-focus">
+
+        <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <div class="col-md-6">
+    <div class="TOTAL">
+      <label class="Régie">CTB  (Hors Masse salariale & Hors SGABS) : </label>
+      <div>
+        <input class="form-control" type="text" [value]="totalSum1"  placeholder="0" readonly />
+      </div>
+      <label class="KMAD">KMAD</label>
+    </div>
+
+
+    <div class="TOTAL">
+      <label class="Régie">CTB  (Hors Masse salariale & yc SGABS) : </label>
+      <div>
+        <input class="form-control" type="text" [value]="totalSum"  placeholder="0" readonly />
+      </div>
+      <label class="KMAD">KMAD</label>
+    </div>
+  </div>
+
+</form>
+
+
+
+  <div class="text-center">
+    <button class="btn btn-primary" (click)="saveBudgetsData()">Save</button>
+
+  </div>
+
+</form>
+<div class="modal fade" id="verticalycenteredCTB" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New solition</h5>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+      </div>
+      <div class="modal-body text-center">
+        <div class="drop-container" >
+
+          <form enctype="multipart/form-data" [formGroup]="toppings"  class="needs-validation" novalidate>
+
+
+
+            <div class="form-group-solition">
+              <!-- <label for="nomSolution ">Nom Solution</label> -->
+              <input type="text" id="nomSolution" class="form-control" formControlName="nom" placeholder="Nom Solution">
+            </div>
+
+            <div class="form-group-solition form-check">
+              <input class="form-check-input" type="checkbox" id="interneCheckbox" formControlName="interne">
+              <label class="form-check-label" for="interneCheckbox">Interne/Externe</label>
+            </div>
+
+            <div class="form-group-solition form-check">
+              <input class="form-check-input" type="checkbox" id="regieCheckbox" formControlName="regie">
+              <label class="form-check-label" for="regieCheckbox">Regie</label>
+            </div>
+
+            <div *ngIf="toppings.get('regie')?.value">
+              <div class="form-group-solition">
+                <!-- <label for="tjmRegie">TJM Regie</label> -->
+                <input type="number" id="tjmRegie" class="form-control" formControlName="TJM_regie" placeholder="TJM Regie">
+              </div>
+            </div>
+
+            <div *ngIf="toppings.get('interne')?.value">
+              <div class="form-group-solition">
+                <!-- <label for="tjmExterne">TJM Externe</label> -->
+                <input type="number" id="tjmExterne" class="form-control" formControlName="TJM_externe" placeholder="TJM Externe">
+              </div>
+              <div class="form-group-solition">
+                <!-- <label for="tjmInterne">TJM Interne</label> -->
+                <input type="number" id="tjmInterne" class="form-control" formControlName="TJM_interne" placeholder="TJM Interne">
+              </div>
+            </div>
+
+          </form>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+
+        <button class="btn btn-primary" aria-label="Close" type="submit"  (click)="onSavepopupadmin()" data-bs-dismiss="modal">
+          Enregistrer
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal fade" id="verticalycenteredBJH" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New solition user</h5>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+      </div>
+      <div class="modal-body text-center">
+        <div class="drop-container" >
+
+
+          <form  enctype="multipart/form-data"  [formGroup]="newone" >
+            <div>
+              <label>Nom Solition</label>
+              <select id="budgets" (change)="onSolutionSelect($event)">
+                <option  disabled>Select solition</option>
+                <option *ngFor="let option of budgets" [value]="option.id">{{ option.nom }}</option>
+              </select>
+            </div>
+            <div *ngIf="receivedData">
+              <ng-container *ngIf="!getone?.type">
+                <input  type="text"  formControlName="interne" [value]="getone?.interne" >
+                <input  type="text"  formControlName="externe" [value]="getone?.externe">
+
+
+              </ng-container>
+              <ng-container  *ngIf="getone?.type">
+
+                <input type="text"  formControlName="regie" [value]="getone?.regie" >
+
+              </ng-container>
+            </div>
+
+
+          </form>
+      </div>
+      <div class="modal-footer">
+
+
+        <button class="btn btn-primary" aria-label="Close" type="submit" (click)="onUpdatepopupadmin()"  data-bs-dismiss="modal">
+          Enregistrer
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal fade" id="verticalycenteredCTB2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New CTB</h5>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+      </div>
+      <div class="modal-body text-center">
+        <div class="drop-container" >
+
+          <form  enctype="multipart/form-data"   [formGroup]="yourFormCTB"  >
+            <div>
+              <label>Nom </label>
+              <input type="text" formControlName="nom">
+            </div>
+
+            <div class="example-section" hidden >
+              <label>number</label>
+              <input type="number" formControlName="sans_interne">
+              <label>KMAD</label>
+
+          </div>
+
+
+
+
+
+          </form>
+
+      </div>
+      <div class="modal-footer">
+
+
+        <button class="btn btn-primary" aria-label="Close" type="submit" (click)="onSaveCTB()"  data-bs-dismiss="modal">
+          Enregistrer
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

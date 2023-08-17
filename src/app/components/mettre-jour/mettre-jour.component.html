@@ -1,0 +1,510 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Mettre A jour</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" hidden><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item" hidden>Tables</li>
+        <li class="breadcrumb-item active" hidden>Morasse budgétaire</li>
+      </ol>
+    </nav>
+  </div>
+
+  <form [formGroup]="myForm">
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h1 class="mb-3">Programme</h1>
+            <div class="mb-3">
+              <label for="programmes" class="form-label">Select Programme</label>
+              <select id="programmes" formControlName="programme_id" class="form-select">
+
+                <option *ngFor="let programme of programmes" [value]="programme.id">{{ programme.nomprog }}</option>
+
+              </select>
+            </div>
+          </div>
+
+          <!-- Add the formGroup directive here -->
+          <div class="col-md-6">
+            <h1 class="mb-3">Initiative</h1>
+            <div class="mb-3">
+              <label for="intiveOptions" class="form-label">Select Initiative</label>
+              <select id="intiveOptions" formControlName="selectedId" name="selectedId" class="form-select"
+                (change)="onInitiativeSelected()">
+                <!-- <option value="" disabled>Select an option</option> -->
+                <option *ngFor="let option of intiveOptions" [value]="option.id">{{ option.projet?.nom }}</option>
+              </select>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <ul class="nav">
+            <li class="nav-item">
+              <span class="nav-link active" (click)="showCaracteristiquesForm = false">Caractéristiques</span>
+            </li>
+            <li class="nav-item2">
+              <span class="nav-link" (click)="showCaracteristiquesForm = true">Budgets</span>
+            </li>
+          </ul>
+          <div class="card-body">
+
+
+            <div *ngIf="!showCaracteristiquesForm">
+
+              <!-- <div class="row ">
+                  <div class="col-md-6">
+                    <div class="initiative">
+                      <label class="">initiative</label>
+                      <input class="form-control" type="text" id="nom" formControlName="nom"  />
+
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <div class="initiative">
+                      <label for="programmetOptions" class="form-label">Programme</label>
+                      <select id="programmetOptions" formControlName="programme_id" class="form-select">
+                        <option value="" disabled>Select an option</option>
+                        <option *ngFor="let option of programmetOptions" [value]="option.id">{{ option.nomprog }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+
+
+
+                <form [formGroup]="projetForm" >
+
+                  <div class="row mt-4">
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="leads">Lead</label>
+                        <select id="leads" formControlName="lead_id" class="form-control" [(ngModel)]="leadd">
+                          <option value="">Select an option</option>
+                          <option *ngFor="let option of leads" [value]="option.id">{{ option.nomLe }}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="row mt-4">
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="montantOption">Lead</label>
+
+                        <input class="form-control" type="text" id="lead_id" formControlName="lead_id" >
+
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="enjeuxOptions">Enjeux</label>
+
+                        <input class="form-control" type="text" id="enjeux_id" formControlName="enjeux_id" readonly>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="natureOptions">Nature programme</label>
+                        <input class="form-control" type="text" id="nature_programme_id"
+                          formControlName="nature_programme_id"  readonly>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="TypeOptions">Type Agile</label>
+
+                        <input class="form-control" type="text" id="type_agile_id" formControlName="type_agile_id" readonly>
+
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label for="PrioriteOptions">Priorite</label>
+
+                        <input class="form-control" type="text" id="priorite_id" formControlName="priorite_id" readonly
+                         >
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label class="">Année</label>
+                        <input class="form-control" type="text" id="Année" formControlName="Année" readonly/>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label class="">Wave n°</label>
+                        <input class="form-control" type="text" id="wave" formControlName="wave" readonly/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="lead">
+                        <label class="form-label">Réf.Sciforma</label>
+                        <input class="form-control" type="text" id="ref_sciforma" formControlName="ref_sciforma"
+                        readonly>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="lead">
+                        <label class="form-label">Type investisement</label>
+
+                        <input class="form-control" type="text" id="type_investisement_id"  formControlName="type_investisement_id" readonly>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Lancement</label>
+                            <div>
+                              <input class="form-control" type="text" id="date_lancement" formControlName="date_lancement" readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Cloture</label>
+                            <div>
+                              <input class="form-control" type="text" id="date_cloture" formControlName="date_cloture" readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Copro#1</label>
+                            <div>
+                              <input class="form-control" type="text" id="copro_1" formControlName="copro_1"  readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Copro#2:</label>
+                            <div>
+                              <input class="form-control" type="text" id="copro_2" formControlName="copro_2"   readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="mb-10">
+                          <label class="form-label fw-bold">Member Type:</label>
+                          <div class="contenue-list">
+                            <div class="list-checkbox">
+                              <ul>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="initiative_anne_en_cours"
+                                    formControlName="initiative_anne_en_cours" />
+                                  <span class="form-check-label">Nouvelle initiative</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="filiale" formControlName="filiale" readonly/>
+                                  <span class="form-check-label">Fillale</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="top_15" formControlName="top_15"  readonly/>
+                                  <span class="form-check-label">Data</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" value="4" id="hors_feuille_de_route "
+                                    formControlName="hors_feuille_de_route " readonly/>
+                                  <span class="form-check-label">Hors Feuille de route</span>
+                                </li>
+
+                                <li>
+                                  <input class="form-check-input" type="checkbox" value="5"
+                                    id="reconduction_annee_prochaine" formControlName="reconduction_annee_prochaine" readonly/>
+                                  <span class="form-check-label"> A mettre à jour</span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="list-checkbox">
+                              <ul>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="urban_sociale_techno"
+                                    formControlName="urban_sociale_techno"  readonly/>
+                                  <span class="form-check-label">Urban Socle Techno</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="sdi" formControlName="sdi"readonly />
+                                  <span class="form-check-label">ope</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="transverse"
+                                    formControlName="transverse"  readonly/>
+                                  <span class="form-check-label">Transverse</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="transverse"
+                                    formControlName="transverse" readonly />
+                                  <span class="form-check-label">Dématériallisation</span>
+                                </li>
+                                <li>
+                                  <input class="form-check-input" type="checkbox" id="Digital" formControlName="Digital"  readonly/>
+                                  <span class="form-check-label">Digital</span>
+                                </li>
+                              </ul>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-outline w-50 mb-4">
+                      <textarea class="form-control" id="description" formControlName="description" rows="3"
+                      readonly ></textarea>
+
+                    </div>
+
+                    <div class="form-outline w-50 mb-4">
+                      <textarea class="form-control" id="textAreaExample5" rows="3" id="actions"
+                        formControlName="actions" readonly></textarea>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                </form>
+
+            </div>
+            <div *ngIf="showCaracteristiquesForm" class="section">
+
+
+
+
+
+              <h1>2.1. Budget J/h : </h1>
+              <div class="row Budget  ">
+
+                <!-- <div class="col-md-2" >
+      <div class="Budgets">
+        <label class="CORPO"></label>
+
+        <div class="card-copro">
+          <ul >
+            <li>
+              <span class="form-check-label">Interne:</span>
+              <input class="form-control" type="text" id="width-input"   />
+            </li>
+            <li>
+              <span class="form-check-label">Externe:</span>
+              <input class="form-control" type="text" id="width-input"  />
+            </li>
+
+          </ul>
+          <ul>
+            <li>
+              <span class="form-check-label">regie</span>
+              <input class="form-control" type="text" id="width-input"   />
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+                <div class="col-md-2">
+                  <div class="Budgets">
+                    <!-- <label class="CORPO">{{ selectedEntite?.nom }}</label> -->
+
+                    <div class="card-copro">
+                      <ul>
+                        <li>
+                          <span class="form-check-label">Interne </span>
+                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.interne" />
+                        </li>
+                        <li>
+                          <span class="form-check-label">Externe</span>
+                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.externe" />
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <span class="form-check-label">Regie </span>
+                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.regie" />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+              </div>
+
+
+              <h2>2.2. Budget CTB : </h2>
+
+
+
+              <div class="row">
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie">Régie :</label>
+                    <div>
+                      <input class="form-control" type="text" formControlName="regieValue" readonly />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie">Contrib &SGABS :</label>
+                    <div>
+                      <input class="form-control" type="text" formControlName="contribValue" readonly />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie"></label>
+                    <div>
+                      <input class="form-control" type="text" />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <!-- <div class="col">
+        <div class="lead">
+          <label class="Régie">Logiciel :</label>
+          <div>
+            <input class="form-control" type="text"   />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+
+                <!-- <div class="col"  >
+        <div class="lead">
+          <label class="Régie">Matériel :</label>
+          <div>
+            <input class="form-control" type="text" formControlName="materielValue"   />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+              </div>
+
+
+
+
+              <h3>2.3. Commentaire sur la répartition budgétaire : </h3>
+
+
+              <div class="row  ">
+
+                <div class=" col-md-10 ">
+
+
+                  <div class="form-group green-border-focus">
+
+                    <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
+
+
+              <div class="col-md-6">
+                <div class="TOTAL">
+                  <label class="Régie">TOTAL CTB :</label>
+                  <div>
+                    <input class="form-control" type="text" readonly />
+                  </div>
+                  <label class="KMAD">KMAD</label>
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <!-- <div class="pagination-container ">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

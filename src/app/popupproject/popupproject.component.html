@@ -1,0 +1,55 @@
+<form  enctype="multipart/form-data"   >
+   [formGroup]="projetForm" (ngSubmit)="onSubmit()"
+  <div>
+    <label>Lead </label>
+    <input type="text" formControlName="nomLe">
+  </div>
+
+  <div >
+    <label>enjeux</label>
+    <input type="text" formControlName="nomEn">
+
+
+</div>
+
+<div >
+  <label>nature programme</label>
+  <input type="text" formControlName="nomNt">
+
+
+</div>
+<div >
+  <label>type Agile</label>
+  <input type="text" formControlName="nom">
+
+
+</div>
+<div >
+  <label>priorité</label>
+  <input type="text" formControlName="nomPr">
+
+
+</div>
+
+<div >
+  <label>type d'investissement</label>
+  <input type="text" formControlName="nominvestisement">
+
+
+</div>
+
+
+<div >
+  <label>Programme</label>
+  <input type="text" formControlName="nomprog">
+
+
+</div>
+
+
+
+
+
+  <button mat-flat-button color="primary" type="submit" >Save</button>
+</form>
+<button mat-flat-button color="warn" class="btn-closer btn btn-danger text-end" (click)="closeDialog()">Close</button>

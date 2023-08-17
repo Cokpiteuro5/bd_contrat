@@ -1,0 +1,114 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Form Layouts</h1>
+    <nav>
+       <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/tables-data">Morasse budgetaire</a></li>
+          <li class="breadcrumb-item active">Layouts</li>
+       </ol>
+    </nav>
+ </div>
+<div class="col-lg-12">
+  <div class="card">
+     <div class="card-body">
+        <h5 class="card-title">Morasse budgetaire</h5>
+        <form class="row g-3" [formGroup]="morassForm" (ngSubmit)="saveMorass()">
+          <div class="col-md-6">
+            <div class="form-floating"> <input type="number" class="form-control" id="floatingName" placeholder="CodeFonc" formControlName="codeFonc"> <label for="floatingName">CodeFonc</label></div>
+             <!-- Validation taskName-->
+             <small class="text-danger" *ngIf="morassForm.get('codeFonc')?.invalid && (morassForm.get('codeFonc')?.touched || morassForm.get('codeFonc')?.dirty)">
+              <p *ngIf="morassForm.get('codeFonc')?.errors?.['required']">
+                  this field is required
+              </p>
+              <!-- <p *ngIf="morassForm.get('codeFonc')?.errors?.['minlength']">
+                  this field should be greater than 5 caracter
+              </p>
+
+              <p  *ngIf="morassForm.get('codeFonc')?.errors?.['maxlength']">
+                  this max is 19 caracter
+              </p>
+              <p *ngIf="morassForm.get('codeFonc')?.errors?.['pattern']">
+                  this field not respect our pattern
+              </p> -->
+          </small>
+         </div>
+           <div class="col-md-6">
+              <div class="form-floating"> <input type="number" class="form-control" id="floatingName" placeholder="CodeEco" formControlName="codeEco"> <label for="floatingName" >CodeEco</label></div>
+              <small class="text-danger" *ngIf="morassForm.get('codeEco')?.invalid && (morassForm.get('codeEco')?.touched || morassForm.get('codeEco')?.dirty)">
+                <p *ngIf="morassForm.get('codeEco')?.errors?.['required']">
+                    this field is required
+                </p>
+
+            </small>
+           </div>
+           <div class="col-md-6">
+              <div class="form-floating"> <input type="number" class="form-control" id="floatingtext" placeholder="Prog" formControlName="prog"> <label for="floatingtext">Prog</label></div>
+              <small class="text-danger" *ngIf="morassForm.get('prog')?.invalid && (morassForm.get('prog')?.touched || morassForm.get('prog')?.dirty)">
+                <p *ngIf="morassForm.get('prog')?.errors?.['required']">
+                    this field is required
+                </p>
+
+            </small>
+           </div>
+           <div class="col-md-6">
+              <div class="form-floating"> <input type="number" class="form-control" id="floatingPassword" placeholder="Reg" formControlName="reg"> <label for="floatingPassword">Reg</label></div>
+              <small class="text-danger" *ngIf="morassForm.get('reg')?.invalid && (morassForm.get('reg')?.touched || morassForm.get('reg')?.dirty)">
+                <p *ngIf="morassForm.get('reg')?.errors?.['required']">
+                    this field is required
+                </p>
+
+            </small>
+           </div>
+           <div class="col-md-6">
+            <div class="form-floating"> <input type="number" class="form-control" id="floatingtext" placeholder="Proj" formControlName="proj"> <label for="floatingtext">Proj</label></div>
+            <small class="text-danger" *ngIf="morassForm.get('proj')?.invalid && (morassForm.get('proj')?.touched || morassForm.get('proj')?.dirty)">
+              <p *ngIf="morassForm.get('proj')?.errors?.['required']">
+                  this field is required
+              </p>
+
+          </small>
+         </div>
+         <div class="col-md-6">
+            <div class="form-floating"> <input type="text" class="form-control" id="floatingPassword" placeholder="Rubriques" formControlName="rubriques"> <label for="floatingPassword">Rubriques</label></div>
+            <small class="text-danger" *ngIf="morassForm.get('rubriques')?.invalid && (morassForm.get('rubriques')?.touched || morassForm.get('rubriques')?.dirty)">
+              <p *ngIf="morassForm.get('rubriques')?.errors?.['required']">
+                  this field is required
+              </p>
+
+          </small>
+         </div>
+
+
+
+         <div class="col-md-6">
+          <div class="form-floating"> <input type="number" class="form-control" id="floatingtext" placeholder="Lig" formControlName="lig"> <label for="floatingtext">Lig</label></div>
+          <small class="text-danger" *ngIf="morassForm.get('lig')?.invalid && (morassForm.get('lig')?.touched || morassForm.get('lig')?.dirty)">
+            <p *ngIf="morassForm.get('lig')?.errors?.['required']">
+                this field is required
+            </p>
+
+        </small>
+       </div>
+
+         <div class="col-6">
+          <!-- <div class="form-floating"><textarea class="form-control" placeholder="CreditsDePaiement" id="floatingTextarea" style="height: 100px;"></textarea><codeFonc for="floatingTextarea" formControlName="creditsDePaiemant">CreditsDePaiement</codeFonc></div> -->
+
+
+          <div class="form-floating"> <input type="number" class="form-control" id="floatingPassword" placeholder="CreditsDePaiement" formControlName="creditsDePaiemant"> <label for="floatingPassword">CreditsDePaiement</label></div>
+          <small class="text-danger" *ngIf="morassForm.get('creditsDePaiemant')?.invalid && (morassForm.get('creditsDePaiemant')?.touched || morassForm.get('creditsDePaiemant')?.dirty)">
+            <p *ngIf="morassForm.get('creditsDePaiemant')?.errors?.['required']">
+                this field is required
+            </p>
+
+        </small>
+       </div>
+            <div class="text-end">
+              <button routerLink="/tables-data" class="btn btn-secondary me-2">Cancel</button>
+              <button type="submit" class="btn btn-primary me-2">Submit</button>
+            </div>
+        </form>
+     </div>
+  </div>
+</div>
+</main>

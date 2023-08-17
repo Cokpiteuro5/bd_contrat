@@ -1,0 +1,109 @@
+
+<main id="main" class="main">
+  <div class="pagetitle">
+     <h1>Etiquetage Objectifs De Développement Durable</h1>
+     <nav>
+        <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+           <li class="breadcrumb-item">Tables</li>
+           <li class="breadcrumb-item active">ODD</li>
+        </ol>
+     </nav>
+  </div>
+  <section class="section">
+     <div class="row">
+        <div class="col-lg-12">
+           <div class="card">
+              <div class="card-body">
+                 <!-- <h5 class="card-title">Datatables</h5>
+                 <p>Add lightweight datatables to your project.</p> -->
+
+                <!-- -->
+                <div class="row">
+
+                  <div class="col-md-2 mt-3 mb-3">
+                    <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (ngModelChange)="onItemsPerPageChange()">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+
+                  <!-- <div class="col-md-6 mt-3 mb-3 ">
+                    <input type="text" class="form-control form-control-flush ps-10" name="search" [(ngModel)]="search" placeholder="Search..." (ngModelChange)="filterOdd()" />
+                  </div> -->
+
+                  <div class="col-sm-10 col-md-10 text-end mt-3 mb-3">
+
+                      <div class="dt-buttons btn-group flex-wrap">
+
+                        <button class="btn  buttons-excel buttons-html5  me-2" type="button" data-bs-toggle="modal" data-bs-target="#verticalycentered" (click)="ExportOdd()" >
+                          <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOtJREFUSEvtlLENwjAQRV8KVqBBQkIU0NBTsQJbwAI0bAAjwCAMQEUNBR0CKRUrUIAO2VJ0EPucKF3cWHbu/rt/SS6j4ZU1rE8qYOEK2lsLSwFMgaMTngEnC8QK6AIXQHZZT2Di9iDHAui4ysVBcYkDcfIKESyAHeB7r7XkXSzrAor5b3ewFPYNNQc64dqAObABxsq2L0QD/NmHX4EVcPAX2kEO9P701AqQ1BswLAPEWpD8XDtIFlBuf/JbgP4earcoNt9aQKxDRFv0APpRmXDAHRiU/ckyi7bAqCLkDKxDs6iibnla6rhOLuADaREyGWG4OkIAAAAASUVORK5CYII="/></span>
+                        </button>
+                        <button class="btn  buttons-pdf buttons-html5 me-2" aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m12 16 4-5h-3V4h-2v7H8z"></path><path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path></svg>                        </button>
+                          <button class="btn  buttons-print " routerLink="/add-odd" routerLinkActive="router-link-active"   tabindex="0" aria-controls="example1" type="button" data-bs-toggle="tooltip" data-bs-placement="top" >
+                            <span><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"/></span>
+                          </button>
+
+
+                      </div>
+                    </div>
+              </div>
+
+              <!-- <div class="loading-overlay" *ngIf="loading" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="text-center">
+                        <div class="spinner-border" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Loading...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                 <table class="table table-hover ">
+                    <thead class="table-primary">
+                       <tr>
+                          <th scope="col">ODD</th>
+                          <th scope="col">Cible</th>
+                          <th scope="col">Étiquettes</th>
+                          <th scope="col">Occurrences</th>
+                          <th scope="col" class="text-center">Action</th>
+                       </tr>
+                    </thead>
+                    <tbody *ngIf="filteredOdds || !loading">
+                      <tr  *ngFor="let odd of odds | paginate: { itemsPerPage: itemsPerPage, currentPage: p} | filter: search">
+                        <td>{{ odd.odd }}</td>
+                        <td>{{ odd.objectif }}</td>
+                        <td>{{ odd.etiquette }}</td>
+                        <td>{{ odd.occurrences_etq }}</td>
+                        <td class="test">
+                           <div class="button-container text-center">
+                               <button class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Update" >
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path><path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path></svg>
+                               </button>
+                               <button class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" >
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(188, 6, 6, 1);transform: ;msFilter:;"><path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm4 12H8v-9h2v9zm6 0h-2v-9h2v9zm.618-15L15 2H9L7.382 4H3v2h18V4z"></path></svg>
+                               </button>
+                             </div>
+                       </td>
+                      </tr>
+                    </tbody>
+                 </table>
+
+                 <div class="pagination-container ">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
+</main>

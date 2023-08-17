@@ -1,0 +1,211 @@
+.initiative label {
+  width: 100px;
+  text-align: center;
+}
+
+
+.initiative > div {
+    width: 100%;
+}
+.initiative {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.lead label {
+  width: 97px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.lead > div {
+  width: 100%;
+}
+.lead {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+
+.priorité label {
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.priorité > div {
+  width: 100%;
+}
+.priorité {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+.list-checkbox ul {
+  display: grid;
+  align-content: space-around;
+  height: 100%;
+}
+.contenue-list {
+  display: flex;
+  min-height: 150px;
+  align-items: stretch;
+}
+.list-checkbox input {
+  margin-right: 10px;
+}
+ul li{
+  list-style: none;
+}
+
+.Budgets {
+  margin: 13px 5px;
+  border: 1px solid #1a1d1c;
+  border-radius: 5px;
+  width: 100%;
+  padding: 30px 10px;
+  position: relative;
+
+}
+
+ .Budget {flex-wrap: wrap;
+
+
+  justify-content: space-between ;}
+
+
+
+  /* button.btn.buttons-excel.buttons-html5.me-2 {
+    left: 1528%;
+} */
+
+
+
+ .CORPO {
+  position: absolute;
+  background: #ffffff;
+  font-family: Stencil Std;
+  COLOR: #3fcc9d;
+  width: fit-content;
+  text-align: center;
+  top: -10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0 10px;
+}
+.tab-pane h1,h2,h3{
+
+  COLOR: #3fcc9d;
+
+
+}
+
+label.KMAD{
+width: 97px;
+text-align: center;
+font-size: 14px;
+color: #119573;
+font-weight: 800;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+
+label.Régie {
+  font-weight: 700;
+  min-width: fit-content;
+}
+.mat-dialog-container#mat-mdc-dialog-0 {
+  max-width: none;
+}
+.card-copro ul{
+  padding: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .TOTAL label {
+    width: 97px;
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .TOTAL > div {
+    width: 100%;
+  }
+  .TOTAL {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    margin: 13px 17px 7px 15px;
+  }
+  .nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin-right: 20px;
+  }
+
+  .nav-link {
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+  }
+
+  .nav-link.active {
+    border-bottom-color: #3fcc9d;
+    font-weight: bold;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

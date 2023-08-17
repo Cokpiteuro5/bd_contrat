@@ -1,0 +1,127 @@
+
+
+
+ <section class="vh-100">
+
+
+
+   <div class="container-fluid h-custom">
+     <div class="row d-flex justify-content-center align-items-center h-100">
+       <div class="col-md-9 col-lg-6 col-xl-5">
+
+         <img src="../../../assets/img/sgma-logo.png" class="img-fluid" alt="Sample image">
+
+       </div>
+       <div class="  col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div  class="d-flex justify-content-center py-4"> <a routerLink="/" class="logo d-flex align-items-center w-auto"> <img src="../../../assets/img/logo-mini1.png" alt="">
+           <!-- <span class="d-none d-lg-block">Admin</span> -->
+           </a></div>
+
+         <div class="pt-4 pb-2">
+           <h5 class="card-title text-center pb-0 fs-4">Se connecter à votre compte </h5>
+           <p class="text-center small">Entrez votre adresse e-mail et votre mot de passe pour vous connecter.</p>
+         </div>
+         <form [formGroup]="loginForm" class="row g-3 needs-validation" novalidate (ngSubmit)="login()">
+           <div class="col-12 mt-3" *ngIf="loginError">
+             <div class="alert alert-danger">{{ loginError }}</div>
+           </div>
+           <div class="col-12">
+             <label for="yourUsername" class="form-label">E-mail</label>
+             <div class="input-group has-validation">
+               <input type="text" formControlName="username" class="form-control" id="yourUsername" required>
+               <button type="button" class="btn btn-primary ">
+                 <i class="bi bi-person-circle"></i>
+               </button>
+               <div class="invalid-feedback"
+                 *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                 Veuillez entrer votre nom d'utilisateur.
+               </div>
+             </div>
+           </div>
+           <div class="col-12">
+             <label for="yourPassword" class="form-label">Mot de passe </label>
+             <div class="input-group has-validation">
+               <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" class="form-control"
+                 id="yourPassword" required>
+               <button type="button" class="btn btn-primary " (click)="togglePasswordVisibility()">
+                 <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash-fill' : 'bi-eye'"></i>
+               </button>
+
+               <div class="invalid-feedback"
+                 *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                 Veuillez entrer votre mot de passe !
+               </div>
+             </div>
+           </div>
+
+           <div class="col-12">
+             <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+           </div>
+           <div class="col-12">
+             <p class="small mb-0">Vous n'avez pas de compte ?
+              <a routerLink="/pages-register">Créez un compte. </a></p>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+   <div
+     class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+     <div class="text-white mb-3 mb-md-0">
+       Droits d'auteur © 2023. Tous droits réservés.
+     </div>
+
+     <div>
+       <a href="#!" class="text-white me-4">
+         <i class="fab fa-facebook-f"></i>
+       </a>
+       <a href="#!" class="text-white me-4">
+         <i class="fab fa-twitter"></i>
+       </a>
+       <a href="#!" class="text-white me-4">
+         <i class="fab fa-google"></i>
+       </a>
+       <a href="#!" class="text-white">
+         <i class="fab fa-linkedin-in"></i>
+       </a>
+     </div>
+
+   </div>
+ </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
