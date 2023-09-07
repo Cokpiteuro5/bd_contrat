@@ -18,7 +18,7 @@
             <h1 class="mb-3">Programme</h1>
             <div class="mb-3">
               <label for="programmes" class="form-label">Select Programme</label>
-              <select id="programmes" formControlName="programme_id" class="form-select">
+              <select id="programmes" formControlName="programme_id" class="form-select"  (change)="onProgrammeSelected($event)">
 
                 <option *ngFor="let programme of programmes" [value]="programme.id">{{ programme.nomprog }}</option>
 
@@ -27,17 +27,39 @@
           </div>
 
           <!-- Add the formGroup directive here -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <h1 class="mb-3">Initiative</h1>
             <div class="mb-3">
               <label for="intiveOptions" class="form-label">Select Initiative</label>
               <select id="intiveOptions" formControlName="selectedId" name="selectedId" class="form-select"
-                (change)="onInitiativeSelected()">
-                <!-- <option value="" disabled>Select an option</option> -->
+
+             (change)="onInitiativeSelected()">
+
+                <option value="" disabled>Select an option</option>
                 <option *ngFor="let option of intiveOptions" [value]="option.id">{{ option.projet?.nom }}</option>
               </select>
             </div>
+          </div> -->
+
+          <div class="col-md-6">
+            <h1 class="mb-3">Initiative</h1>
+            <div class="mb-3">
+              <label for="intiveOptions" class="form-label">Select Initiative</label>
+              <select
+                id="intiveOptions"
+                formControlName="selectedId"
+                name="selectedId"
+                class="form-select"
+                (change)="onInitiativeSelected()"
+              >
+                <!-- Check if projet array has valid data and is being looped correctly -->
+                <option *ngFor="let option of intiveOptions" [value]="option.id">{{ option.nom }}</option>
+              </select>
+            </div>
           </div>
+
+
+
 
 
 
@@ -95,9 +117,10 @@
                   <div class="row mt-4">
                     <div class="col-md-3">
                       <div class="lead">
-                        <label for="montantOption">Lead</label>
-
+                        <label >Lead</label>
                         <input class="form-control" type="text" id="lead_id" formControlName="lead_id" readonly>
+
+                        <!-- <input class="form-control" type="text" id="lead_id" formControlName="lead_id" readonly> -->
 
 
                       </div>
@@ -166,12 +189,20 @@
                     <div class="col-md-6">
                       <div class="lead">
                         <label class="form-label">Type investisement</label>
-
-                        <input class="form-control" type="text" id="type_investisement_id"  formControlName="type_investisement_id" readonly>
-
+                        <input class="form-control" type="text" id="type_investisement_id" formControlName="type_investisement_id" readonly>
                       </div>
                     </div>
+<!--
+                    <div class="col-md-6">
+                      <div class="lead">
+                        <label class="form-label">Type investisement</label>
+
+                        <input class="form-control" type="text" id="type_investisement_id" formControlName="type_investisement_id" readonly>
+
+                      </div>
+                    </div> -->
                   </div>
+
                   <div class="row">
 
                     <div class="col-md-6">
@@ -321,62 +352,45 @@
               <h1>2.1. Budget J/h : </h1>
               <div class="row Budget  ">
 
-                <!-- <div class="col-md-2" >
-      <div class="Budgets">
-        <label class="CORPO"></label>
-
-        <div class="card-copro">
-          <ul >
-            <li>
-              <span class="form-check-label">Interne:</span>
-              <input class="form-control" type="text" id="width-input"   />
-            </li>
-            <li>
-              <span class="form-check-label">Externe:</span>
-              <input class="form-control" type="text" id="width-input"  />
-            </li>
-
-          </ul>
-          <ul>
-            <li>
-              <span class="form-check-label">regie</span>
-              <input class="form-control" type="text" id="width-input"   />
-            </li>
-          </ul>
-
-        </div>
-      </div>
-    </div> -->
 
 
 
 
-                <div class="col-md-2">
-                  <div class="Budgets">
-                    <!-- <label class="CORPO">{{ selectedEntite?.nom }}</label> -->
 
-                    <div class="card-copro">
-                      <ul>
-                        <li>
-                          <span class="form-check-label">Interne </span>
-                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.interne" />
-                        </li>
-                        <li>
-                          <span class="form-check-label">Externe</span>
-                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.externe" />
-                        </li>
-                      </ul>
-                      <ul>
-                        <li>
-                          <span class="form-check-label">Regie </span>
-                          <input class="form-control" type="text" id="width-input" [value]="selectedEntite?.regie" />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+ <div class="col-md-2" *ngFor="let item of fetchedEntites">
+  <div class="Budgets" *ngIf="item.type != 'forfait' ">
+
+    <label class="CORPO">{{ item?.nom }}</label>
+
+    <div class="card-copro" >
+      <ul  *ngIf="item.type === 'EI'">
+        <li>
+          <span class="form-check-label">Interne</span>
+
+          <input class="form-control" type="text" id="width-input1" [value]="item?.interne" />
+          <input class="form-control" type="text" id="width-input1" [value]="item?.TJM_interne"  hidden/>
+
+        </li>
+        <li>
+          <span class="form-check-label">Externe</span>
+          <input class="form-control" type="text" id="width-input2" [value]="item?.externe" />
+          <input class="form-control" type="text" id="width-input1" [value]="item?.TJM_externe"  hidden/>
+
+        </li>
+      </ul>
+      <ul *ngIf="item.type === 'regie'">
+        <li>
+          <span class="form-check-label">Regie</span>
+          <input class="form-control" type="text" id="width-input3" [value]="item?.regie" />
+          <input class="form-control" type="text" id="width-input1" [value]="item?.TJM_regie"  hidden/>
+
+        </li>
+      </ul>
+    </div>
+  </div>
 
 
+</div>
 
 
 
@@ -390,56 +404,72 @@
 
 
 
-              <div class="row">
-                <div class="col">
-                  <div class="lead">
-                    <label class="Régie">Régie :</label>
+              <div class="">
+                <span  class="lead2">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="d-flex align-items-center">
+                      <label class="Régie">Régie :</label>
+                      <div>
+                        <input class="form-control" type="text"   [(ngModel)]="totalEntiteForProjet" readonly />
+                      </div>
+                      <label class="KMAD">KMAD</label>
+                    </div>
+                    </div>
+                    <ng-container  *ngFor="let item of fetchedEntites">
+                        <ng-container *ngIf="item.type === 'regie'">
+                          <div  class="col-md-4" >
+                            <div class="d-flex align-items-center">
+                              <label class="Régie">Contrib &{{item.nom}} :</label>
+                              <div>
+                                <input class="form-control mb-3" type="text"  value="{{ item.regie * item.TJM_regie }}"  readonly />
+                              </div>
+                              <label class="KMAD">KMAD</label>
+
+                            </div>
+                          </div>
+
+                        </ng-container>
+
+
+                    </ng-container>
+                    <ng-container  *ngFor="let item of fetchedEntites">
+
+                        <ng-container *ngIf="item.type === 'forfait'">
+                          <div class="col-md-4" >
+                            <div class="d-flex align-items-center">
+                            <label class="Régie">{{ item.nom }}</label>
+                            <div>
+                              <!-- formControlName="contribValue" -->
+                              <input class="form-control" type="text"  [value]="item.forfait"  placeholder="0" readonly />
+                            </div>
+                            <label class="KMAD">KMAD</label>
+                          </div>
+                        </div>
+                        </ng-container>
+
+
+                    </ng-container>
+
+                  </div>
+                </span>
+
+
+
+
+
+                <!-- <span class="lead2">
+                  <div  *ngFor="let item of fetchedEntites">
+                    <span class="col-md-4"  *ngIf="item.type === 'forfait'">
+                    <label class="Régie">{{ item.nom }}</label>
                     <div>
-                      <input class="form-control" type="text" formControlName="regieValue" readonly />
+                      <input class="form-control" type="text"  [value]="item.forfait"  placeholder="0" readonly />
                     </div>
                     <label class="KMAD">KMAD</label>
+                  </span>
                   </div>
-                </div>
+                </span> -->
 
-                <div class="col">
-                  <div class="lead">
-                    <label class="Régie">Contrib &SGABS :</label>
-                    <div>
-                      <input class="form-control" type="text" formControlName="contribValue" readonly />
-                    </div>
-                    <label class="KMAD">KMAD</label>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="lead">
-                    <label class="Régie"></label>
-                    <div>
-                      <input class="form-control" type="text" />
-                    </div>
-                    <label class="KMAD">KMAD</label>
-                  </div>
-                </div>
-
-                <!-- <div class="col">
-        <div class="lead">
-          <label class="Régie">Logiciel :</label>
-          <div>
-            <input class="form-control" type="text"   />
-          </div>
-          <label class="KMAD">KMAD</label>
-        </div>
-      </div> -->
-
-                <!-- <div class="col"  >
-        <div class="lead">
-          <label class="Régie">Matériel :</label>
-          <div>
-            <input class="form-control" type="text" formControlName="materielValue"   />
-          </div>
-          <label class="KMAD">KMAD</label>
-        </div>
-      </div> -->
               </div>
 
 
@@ -466,11 +496,22 @@
 
 
 
+
+
               <div class="col-md-6">
                 <div class="TOTAL">
-                  <label class="Régie">TOTAL CTB :</label>
+                  <label class="Régie">CTB  (Hors Masse salariale & Hors SGABS) : </label>
                   <div>
-                    <input class="form-control" type="text" readonly />
+                    <input class="form-control" type="text"  [value]="totalEntiteForProjet + totalForfaitSum"  placeholder="0" readonly />
+                  </div>
+                  <label class="KMAD">KMAD</label>
+                </div>
+
+
+                <div class="TOTAL">
+                  <label class="Régie">CTB  (Hors Masse salariale & yc SGABS) : </label>
+                  <div>
+                    <input class="form-control" type="text" [value]="totalEntiteForProjet + sum + totalForfaitSum"   totalSum placeholder="0" readonly />
                   </div>
                   <label class="KMAD">KMAD</label>
                 </div>
@@ -481,9 +522,7 @@
 
 
 
-
             </div>
-
 
 
 

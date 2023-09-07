@@ -39,7 +39,15 @@ export class MorassService {
   getAllEntiteofOneProjet(id:number){
     return this.http.get(`http://localhost:5000/api/entite/getallinone/${id}`)
   }
+  updateEntite(id:number ,data:any){
+    return this.http.patch(`http://localhost:5000/api/entite/${id}`,data)
 
+
+  }
+
+  updateCaracteristique(id:number , data:any){
+    return this.http.patch(`http://localhost:5000/api/projet/${id}`,data)
+  }
 
 
   getInvestisementById(id:number){
@@ -91,8 +99,26 @@ export class MorassService {
 
 
 
+getoneproject(id: number):Observable<any>{
+  return this.http.get(`${this.backendUrl}/projet/${id}`);
 
+}
 
+getAllProjects():Observable<any>{
+  return this.http.get(`${this.backendUrl}/projet`);
+
+}
+
+getEntitesByProjetId(id: number): Observable<Entite[]> {
+  return this.http.get<Entite[]>(`${this.backendUrl}/entite/entites/${id}`);
+}
+
+getCTBByProjectId(id: number): Observable<BudgetCtb[]> {
+  return this.http.get<BudgetCtb[]>(`${this.backendUrl}/budget_ctb/ctb/${id}`);
+}
+deleteEntity(id: number):Observable<Entite[]> {
+  return this.http.delete<Entite[]>(`${this.backendUrl}/entite/${id}`);
+}
 
 
 
@@ -154,15 +180,36 @@ getMorasses():Observable<ResMorass>{
   }
 
 
-
+  deleteEntityById(entityId: number): Observable<any> {
+    return this.http.delete(`${this.backendUrl}/entite/${entityId}`); // Update the URL to match your API endpoint
+   ;
+  }
 
 
   getTemplateData(): Observable<Entite[]>  {
     return this.http.get<Entite[]>(`${this.backendUrl}/entite`)
   }
 
+  updateProjectEnjeux(projectId: number, enjeuxId: any){
+    const updateData = { enjeux_id: enjeuxId }; // Create an object with the new enjeux_id
 
+    return this.http.patch(`${this.backendUrl}/projet/${projectId}`, updateData);
+    // Replace the URL with the actual endpoint to update a project
+  }
 
+  updatelead(projectId: number, leadID: any){
+    const Data = { lead_id: leadID }; // Create an object with the new enjeux_id
+
+    return this.http.patch(`${this.backendUrl}/projet/${projectId}`, Data);
+    // Replace the URL with the actual endpoint to update a project
+  }
+
+  upnature(projectId: number, nature: any){
+    const Data = { lead_id: nature }; // Create an object with the new enjeux_id
+
+    return this.http.patch(`${this.backendUrl}/projet/${projectId}`, Data);
+    // Replace the URL with the actual endpoint to update a project
+  }
   getOneEntite(id: any): Observable<Entite> {
     return this.http.get<Entite>(`${this.backendUrl}/entite/${id}`);
   }
@@ -186,7 +233,16 @@ getMorasses():Observable<ResMorass>{
   getProjet(): Observable<Projet[]> {
     return this.http.get<Projet[]>(`${this.backendUrl}/projet`);
   }
+  // getProjetbyidprogramme(programme_id: number): Observable<Projet[]> {
+  //   // Construct the API URL with the specified programme_id
+  //   const url = `${this.backendUrl}/projet?programme_id=${programme_id}`;
+  //   return this.http.get<Projet[]>(url);
+  // }
 
+  getProjetbyidprogramme(programmeId: number): Observable<Projet[]> {
+    const params = new HttpParams().set('programme_id', programmeId.toString()); // Use the correct query parameter name
+    return this.http.get<Projet[]>(`${this.backendUrl}/projet`, { params });
+  }
   getlead(): Observable<Lead[]> {
     return this.http.get<Lead[]>(`${this.backendUrl}/lead`)
   }

@@ -20,23 +20,13 @@ import { Auth } from '../models/auth';
 export class BudgetService {
 
 
-  // downloadOddExcel() {
-  //   throw new Error('Method not implemented.');
-  // }
-  // saveExcelFile(blob: any, arg1: string) {
-  //   throw new Error('Method not implemented.');
-  // }
 
-  // baseUrl: string = 'http://localhost:4000/api/v1/odd/odd-calc'
   private backendUrl ='http://localhost:5000/api';
 
 
   constructor(private http: HttpClient) { }
 
 
-//   getOddBudegt():Observable<ResOddBudget> {
-//     return this.http.get<ResOddBudget>('http://localhost:4000/api/v1/odd/odd-calc')
-// }
 
 createTypeAgile(typeAgile: TypeAgile): Observable<TypeAgile> {
   return this.http.post<TypeAgile>(`${this.backendUrl}/type_agile`, typeAgile);

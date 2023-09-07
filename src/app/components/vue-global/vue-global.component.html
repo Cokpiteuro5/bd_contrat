@@ -1,0 +1,692 @@
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>vue Globale</h1>
+
+  </div>
+
+  <form  [formGroup]="myForm" >
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="top-vue">
+              <P class="">Programme</P>
+              <div class="">
+                <label for="programmes" class="form-label">Select Programme</label>
+                <select id="programmes" class="form-select" (change)="onProgrammeChange($event)">
+                  <option value="disabled" disabled>Select an option</option>
+
+                  <option *ngFor="let prog of programmes" [value]="prog.id">{{ prog.nomprog }}</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="top-vue">
+              <P class="">Critéres</P>
+              <div class="">
+                <label for="intiveOptions" class="form-label">Lead :</label>
+                <select id="intiveOptions" formControlName="selectedId" name="selectedId" class="form-select">
+                  <option value="" disabled>Select an option</option>
+                </select>
+                <label for="intiveOptions" class="form-label">Enjeux :</label>
+                <select id="intiveOptions" formControlName="selectedId" name="selectedId" class="form-select">
+                  <option value="" disabled>Select an option</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="top-vue">
+              <P class="">Année Budgétaire</P>
+              <div class="mb-2">
+                <label for="intiveOptions" class="form-label">Année:</label>
+                <select id="intiveOptions" formControlName="selectedId" name="selectedId" class="form-select">
+                  <option value="" disabled>Select an option</option>
+                  <option></option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <ul class="nav">
+            <li class="nav-item">
+              <span class="nav-link active" (click)="showCaracteristiquesForm = false">Caractéristiques</span>
+            </li>
+            <li class="nav-item2">
+              <span class="nav-link" (click)="showCaracteristiquesForm = true">Liste d'initiatives</span>
+            </li>
+          </ul>
+          <div class="card-body">
+
+
+            <div *ngIf="!showCaracteristiquesForm">
+
+
+
+              <form>
+
+
+                <div class="row ">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                    <div class="Budgets1">
+                      <label class="CORPO">Nombre d'initiatives par priorité</label>
+
+                      <div class="row_total">
+
+                        <div class="TOTAL-INITIATIVES">
+                          <h2>{{ numberOfProjects }}</h2>
+                          <p>TOTAL INITIATIVES</p>
+                        </div>
+
+
+
+
+
+                        <div class="TOTAL_init">
+                          <div class="card-number2">
+                            <label class="form-label">Priorité 1</label>
+                            <input class="form-number" type="text" value="{{ p1Sum }}" readonly placeholder="0">
+
+
+                          </div>
+
+
+                          <div class="card-number2">
+                            <label class="form-label">Priorité 2</label>
+                            <input class="form-number" type="text" value="{{ p2Sum }}" readonly  placeholder="0">
+
+
+                          </div>
+                          <div class="card-number2">
+                            <label class="form-label">Priorité 3</label>
+                            <input class="form-number" type="text" value="{{ p3Sum }}"readonly   placeholder="0">
+
+
+                          </div>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="Budgets">
+                      <label class="CORPO"> Budget par priorité :</label>
+
+
+                      <div class="row_total">
+
+                        <div class="row">
+                          <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                            <div class="TOTAL-INITIATIVES1">
+                              <h2>{{ totalSumAll }}</h2>
+                              <p>TOTAL CTB</p>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+
+                            <div class="row_total">
+
+
+                              <div class="TOTAL_init2">
+                                <div class="card-number2">
+                                  <label class="form-label">Priorité 1</label>
+                                  <input class="form-number" type="text" readonly>
+
+
+                                </div>
+
+
+                                <div class="card-number2">
+                                  <label class="form-label">Priorité 2</label>
+                                  <input class="form-number" type="text" readonly>
+
+
+                                </div>
+                                <div class="card-number2">
+                                  <label class="form-label">Priorité 3</label>
+                                  <input class="form-number" type="text" readonly>
+
+
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="">
+
+
+
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Regie</th>
+                                    <th scope="col">FORFIAT</th>
+                                    <th scope="col">LOG_MAT</th>
+                                    <th scope="col">SGABS</th>
+
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+
+                                  </tr>
+                                  <tr>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+
+                                  </tr>
+                                  <tr>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+                                    <td>0,0</td>
+
+                                  </tr>
+                                </tbody>
+                              </table>
+
+
+
+                            </div>
+
+                          </div>
+                        </div>
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+                <div class="row_resourse">
+                  <div class="col-md-6">
+                    <div class="Budgets2">
+                      <label class="CORPO">Ressources P1-Solutions</label>
+
+
+
+                      <div class="table-container">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>CORPO</th>
+                              <th>MMA</th>
+                              <th>RETAIL</th>
+                              <th>RFC</th>
+                              <th>SYN</th>
+                              <th>BI</th>
+                              <th>PHOENIX</th>
+                              <th>SQL</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td ><span>0.0</span></td>
+                            </tr>
+                            <tr>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td>0.0</td>
+                              <td ><span>0.0</span></td>
+                            </tr>
+                            <tr>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                              <td ><span>0.0</span></td>
+                            </tr>
+                            <!-- Repeat similar rows as needed -->
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row_resourse">
+                  <div class="col-md-7">
+                    <div class="Budgets2">
+                      <label class="CORPO">Ressources P1-COO Tech</label>
+
+
+
+                      <div class="row_total4">
+                        <div class="label-column">
+                          <label for="">OP</label>
+                          <label for="">ITS</label>
+
+                          <label for="">DIFA</label>
+                          <label for="">GOV iT</label>
+
+                          <label for="">IT RUN</label>
+                          <label for="">SQL</label>
+                          <label for="">DOM</label>
+                          <label for="">DATA</label>
+                          <label for="">PILOTAGE</label>
+                          <label for="">COO TECH</label>
+                        </div>
+
+                        <div class="row_in">
+
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                        </div>
+                        <div class="row_in">
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                        </div>
+                        <div class="row_in">
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                          <input type="text" value="0,0" readonly>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="Budgets">
+
+                  <!-- <label >Répartition par Lead et par type d'initiatives (Uniquement P1):</label> -->
+
+                  <div class="row">
+                    <div class="table-responsive">
+                      <table class="table table-striped text-successtable-border border-light">
+                        <thead class="border-light">
+                          <tr>
+                            <th scope="col"></th>
+                            <th scope="col"><strong>Nomber <br> d'initiative</strong></th>
+                            <th scope="col"><strong>Dont <br> reconduit</strong></th>
+                            <th scope="col"><strong>CTB TOtal y<br> compris SGABS </strong></th>
+                            <th scope="col"><strong>Dont <br> reconduit</strong></th>
+                            <th scope="col"><strong>CTB <br> Forfait</strong></th>
+                            <th scope="col"><strong>%</strong></th>
+                            <th scope="col"><strong>CTB <br> LOG_MAT</strong></th>
+                            <th scope="col"><strong>%</strong></th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Solutions</th>
+                            <td>700 MB</td>
+                            <td>1,5 GB</td>
+                            <td>50 GB</td>
+                            <td>up to 5T</td>
+                            <td>1,5 GB</td>
+                            <td>50 GB</td>
+                            <td>up to 5T</td>
+                            <td>up to 5T</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Organisation</th>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">IT Services</th>
+                            <td>-</td>
+                            <td>Optional</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+
+                          </tr>
+                          <tr>
+                            <th scope="row">Digital Factory</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Gouvernance IT</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Data factory</th>
+                            <td>None</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+
+                          </tr>
+                          <tr>
+                            <th scope="row">SGABS </th>
+                            <td>None</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+
+                          </tr>
+
+                          <tr>
+                            <th scope="row">Pilotage </th>
+                            <td>None</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+
+                          </tr>
+
+                          <tr>
+                            <th scope="row">DOM</th>
+                            <td>None</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+                            <td>15$/incident</td>
+                            <td>24/7 included</td>
+                            <td>35$/incident</td>
+
+                          </tr>
+                          <!-- <tr>
+          <td></td>
+          <td class="fw-bold">Free</td>
+          <td class="fw-bold">$99/mo</td>
+          <td class="fw-bold">$179/mo</td>
+          <td class="fw-bold"><a href>Contact us</a></td>
+        </tr> -->
+                          <!-- <tr>
+          <th></th>
+          <th><button class="btn btn-primary">Sign-up</button></th>
+          <th><button class="btn btn-primary">Buy Now</button></th>
+          <th><button class="btn btn-primary">Buy Now</button></th>
+          <th></th>
+        </tr> -->
+                        </tbody>
+                      </table>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                </div>
+              </form>
+
+            </div>
+            <div *ngIf="showCaracteristiquesForm" class="section">
+
+
+
+
+
+              <h1>2.1. Budget J/h : </h1>
+              <div class="row Budget  ">
+
+                <!-- <div class="col-md-2" >
+      <div class="Budgets">
+        <label class="CORPO"></label>
+
+        <div class="card-copro">
+          <ul >
+            <li>
+              <span class="form-check-label">Interne:</span>
+              <input class="form-control" type="text" id="width-input"   />
+            </li>
+            <li>
+              <span class="form-check-label">Externe:</span>
+              <input class="form-control" type="text" id="width-input"  />
+            </li>
+
+          </ul>
+          <ul>
+            <li>
+              <span class="form-check-label">regie</span>
+              <input class="form-control" type="text" id="width-input"   />
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+                <div class="col-md-2">
+                  <div class="Budgets">
+                    <label class="CORPO">amine</label>
+
+                    <div class="card-copro">
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+              </div>
+
+
+              <h2>2.2. Budget CTB : </h2>
+
+
+
+              <div class="row">
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie">Régie :</label>
+                    <div>
+                      <input class="form-control" type="text" formControlName="regieValue" readonly />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie">Contrib &SGABS :</label>
+                    <div>
+                      <input class="form-control" type="text" formControlName="contribValue" readonly />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="lead">
+                    <label class="Régie"></label>
+                    <div>
+                      <input class="form-control" type="text" />
+                    </div>
+                    <label class="KMAD">KMAD</label>
+                  </div>
+                </div>
+
+                <!-- <div class="col">
+        <div class="lead">
+          <label class="Régie">Logiciel :</label>
+          <div>
+            <input class="form-control" type="text"   />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+
+                <!-- <div class="col"  >
+        <div class="lead">
+          <label class="Régie">Matériel :</label>
+          <div>
+            <input class="form-control" type="text" formControlName="materielValue"   />
+          </div>
+          <label class="KMAD">KMAD</label>
+        </div>
+      </div> -->
+              </div>
+
+
+
+
+              <h3>2.3. Commentaire sur la répartition budgétaire : </h3>
+
+
+              <div class="row  ">
+
+                <div class=" col-md-10 ">
+
+
+                  <div class="form-group green-border-focus">
+
+                    <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
+
+
+              <div class="col-md-6">
+                <div class="TOTAL">
+                  <label class="Régie">TOTAL CTB :</label>
+                  <div>
+                    <input class="form-control" type="text" readonly />
+                  </div>
+                  <label class="KMAD">KMAD</label>
+                </div>
+              </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <!-- <div class="pagination-container ">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

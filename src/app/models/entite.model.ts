@@ -5,7 +5,8 @@ export interface Entite {
   id?:string;
   interne?: number;
   externe?: number ;
-  type: boolean;
+  type: string;
+  forfait?:number;
   regie?: number ;
   TJM_interne?:number;
   TJM_externe?:number;

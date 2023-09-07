@@ -2,7 +2,8 @@ import { Entite } from "./entite.model";
 
 export interface BudgetCtb {
   id?: number;
-  entite_id?:Entite[];
+  entite_id?:number;
+  projet_id?:number;
   nom: string;
   sans_interne?: number;
 }

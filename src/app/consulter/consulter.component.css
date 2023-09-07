@@ -79,10 +79,11 @@ ul li{
 
 }
 
- .Budget {flex-wrap: wrap;
+ .Budget {
+  flex-wrap: wrap;
 
 
-  justify-content: space-between ;}
+  }
 
 
 
@@ -120,12 +121,6 @@ color: #119573;
 font-weight: 800;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
 
 
@@ -138,6 +133,17 @@ label.Régie {
 }
 .card-copro ul{
   padding: 0 !important;
+}
+
+
+.lead2 label {
+  width: 97px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.lead2 > div {
+  width: 100%;
 }
 
 

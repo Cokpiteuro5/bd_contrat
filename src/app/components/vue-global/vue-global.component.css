@@ -1,0 +1,413 @@
+.initiative label {
+  width: 100px;
+  text-align: center;
+}
+
+
+.initiative > div {
+    width: 100%;
+}
+.initiative {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.lead label {
+  width: 97px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.lead > div {
+  width: 100%;
+}
+.lead {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+
+.priorité label {
+  width: 100px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.priorité > div {
+  width: 100%;
+}
+.priorité {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+.list-checkbox ul {
+  display: grid;
+  align-content: space-around;
+  height: 100%;
+}
+.contenue-list {
+  display: flex;
+  min-height: 150px;
+  align-items: stretch;
+}
+.list-checkbox input {
+  margin-right: 10px;
+}
+ul li{
+  list-style: none;
+}
+
+.Budgets {
+  margin: 13px 5px;
+  border: 1px solid #1a1d1c;
+  border-radius: 5px;
+  width: 100%;
+  /* padding: 30px 10px; */
+  position: relative;
+
+}
+
+.Budgets1 {
+  margin: 13px 5px;
+  border: 1px solid #1a1d1c;
+  border-radius: 5px;
+
+  height: fit-content ;
+
+  position: relative;
+
+}
+
+.Budgets2 {
+  margin: 13px 5px;
+  border: 1px solid #1a1d1c;
+  border-radius: 5px;
+  width: 156%;
+
+  position: relative;
+
+}
+
+
+ .Budget {flex-wrap: wrap;
+
+
+  justify-content: space-between ;}
+
+
+
+  /* button.btn.buttons-excel.buttons-html5.me-2 {
+    left: 1528%;
+} */
+
+
+
+ .CORPO {
+  position: absolute;
+  background: #ffffff;
+  font-family: Stencil Std;
+  COLOR: #3fcc9d;
+  width: fit-content;
+  text-align: center;
+  top: -10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0 10px;
+}
+.tab-pane h1,h2,h3{
+
+  COLOR: #3fcc9d;
+
+
+}
+
+label.KMAD{
+width: 97px;
+text-align: center;
+font-size: 14px;
+color: #119573;
+font-weight: 800;
+}
+
+
+
+
+label.Régie {
+  font-weight: 700;
+  min-width: fit-content;
+}
+.mat-dialog-container#mat-mdc-dialog-0 {
+  max-width: none;
+}
+.card-copro ul{
+  padding: 0 !important;
+}
+
+
+
+
+
+
+
+
+  .TOTAL label {
+    width: 97px;
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .TOTAL > div {
+    width: 100%;
+  }
+  .TOTAL {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    margin: 13px 17px 7px 15px;
+  }
+  .nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin-right: 20px;
+  }
+
+  .nav-link {
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+  }
+
+  .nav-link.active {
+    border-bottom-color: #3fcc9d;
+    font-weight: bold;
+  }
+
+
+
+
+
+
+
+
+
+  .form-number {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 20%;
+
+  }
+
+  .card-number2 {
+    display: flex;
+}
+
+
+.form-label {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.card-number2:nth-child(3) .form-label {
+  border: 2px solid #ff8080; /* Border color for label 3 */
+
+}
+
+.card-number2:nth-child(1) .form-label {
+  border: 2px solid #5f5e5e; /* Border color for label 1 */
+
+
+}
+
+.card-number2:nth-child(2) .form-label {
+  border: 2px solid #aa80ff;
+}
+
+.row_total{
+  display: flex;
+    /* flex-direction: column-reverse; */
+    PADDING: 13px 0px 11px 9px;
+}
+
+.TOTAL_init{
+position: relative;
+left: 13%;
+top: 5px;
+
+}
+.TOTAL_init2{
+  position: relative;
+
+
+  }
+.TOTAL_init:before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  height: 95%;
+  width: 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+.TOTAL_init2:before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  height: 73%;
+  width: 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+
+.TOTAL_init2:after {
+  content: '';
+
+  position: absolute;
+  left: 162px;
+    height: 85%;
+  width: 5px;
+  top: -6px;
+  border-left: 1px solid black;
+}
+
+
+.row_total2 {
+  width: 58%;
+}
+.TOTAL-INITIATIVES {
+  position: relative;
+  /* top: 28%; */
+  left: 18px;
+  TOP: 45PX;
+}
+
+
+
+.row_total4 {
+  PADDING: 23px;
+  /* display: flex; */
+}
+
+.row_in {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.row_in input[type="text"] {
+
+  width: 44px;
+  border: none; /* Remove border */
+
+
+  margin: 7px;
+
+  /* Other input styles here */
+}
+
+
+.label-column {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.row_in label {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center labels horizontally */
+  margin-right: 20px; /* Adjust spacing between labels and inputs */
+}
+
+
+.row_in:last-child input[type="text"] {
+  background-color: pink; /* Apply your desired styles */
+  border: none; /* Remove border */
+
+}
+
+
+.row_in input[type="text"]:last-child {
+  background-color: pink; /* Apply your desired background color */
+  border: none;
+}
+
+.table-responsive {
+  WIDTH: 99%;
+  padding: 23px 25px 10px 25px;
+}
+
+
+
+
+/* Apply some basic styling to the body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the card body */
+.card-body {
+  padding: 14px
+}
+
+.top-vue{
+  background-color: #e5c5c5;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  height: 100%;
+  display: grid;
+  width: 100%;
+  padding: 16px 22px;
+
+}
+.table-container > table{
+  width: 100%;
+}
+.table-container {
+  padding: 15px;
+}
+.table-container span{
+  background: pink;
+  margin: 5px;
+}
+
+
+/* Style for labels */
+.form-label {
+  font-weight: bold;
+}
+
+/* Responsive styling for medium-sized screens and above */
+@media screen and (min-width: 768px) {
+  .col-md-3 {
+      margin-bottom: 0;
+  }
+}
+
+

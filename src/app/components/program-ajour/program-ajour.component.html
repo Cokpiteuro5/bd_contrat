@@ -1,0 +1,95 @@
+
+
+    <main id="main" class="main">
+      <div class="pagetitle">
+         <h1>Ajouter Une Initiative</h1>
+         <nav>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item" hidden><a routerLink="/">Home</a></li>
+               <li class="breadcrumb-item" hidden>Tables</li>
+               <li class="breadcrumb-item active" hidden>Morasse budgétaire</li>
+            </ol>
+         </nav  >
+      </div >
+
+
+
+      <form [formGroup]="myForm">
+        <div class="card mb-3">
+          <div class="card-body">
+
+            <div class="row g-3">
+              <div class=" col-md-5">
+                <div class="mt-2" >
+
+                </div>
+                <h1 for="montantOption" class="mb-3">Programme</h1>
+                <select id="programmes" formControlName="programme_id" class="form-select" (change)="onProgrammeSelected($event)">
+                  <option *ngFor="let programme of programmes" [value]="programme.id">{{ programme.nomprog }}</option>
+
+              </select>
+
+              </div>
+
+              <div class="col-md-7">
+                <h1 class="mb-3">Initiative</h1>
+                <div class="initiative mb-3">
+                  <input type="checkbox" id="changesMade" checked class="form-check-input">
+                  <label class="form-check-label" for="changesMade">Libellé</label>
+                  <select
+                  id="intiveOptions"
+                  formControlName="selectedId"
+                  name="selectedId"
+                  class="form-select"
+                  (change)="onInitiativeSelected()"
+                >
+
+
+                  <!-- Check if projet array has valid data and is being looped correctly -->
+                  <option *ngFor="let option of intiveOptions" [value]="option.id">{{ option.nom }}</option>
+                </select>
+                </div>
+
+                <div class="initiative mb-3">
+                  <input type="checkbox" id="referenceCheckbox" checked class="form-check-input">
+                  <label class="form-check-label" for="referenceCheckbox">Référence</label>
+                  <div>
+                    <input class="form-control" type="text" id="reference-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+
+        <section class="section">
+           <div class="row">
+              <div class="col-lg-12">
+                 <div class="card">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link" routerLink="cara" routerLinkActive="active">Caractéristiques</a>
+                    </li>
+                    <li class="nav-item2">
+                      <a class="nav-link" routerLink="Budget" routerLinkActive="active">Budgets</a>
+                    </li>
+                  </ul>
+                    <div class="card-body">
+
+
+
+                      <router-outlet></router-outlet>
+
+
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </section>
+
+
+
+
+
+    </main>

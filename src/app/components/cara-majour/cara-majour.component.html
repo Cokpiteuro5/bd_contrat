@@ -1,0 +1,266 @@
+
+
+
+
+
+
+
+
+
+            <form [formGroup]="projetForm" (ngSubmit)="modifiercarac()">
+
+
+
+
+
+
+              <div class="row mt-4">
+                <div class="col-md-3">
+                  <div class="lead">
+                    <label for="montantOption">Lead</label>
+                    <select id="leads" formControlName="lead_id" class="form-control"  [(ngModel)]="selectedEntite.lead_id"
+                    (change)="selected($event)" >
+                      <option value="">Select an option</option>
+                      <option *ngFor="let option of leads"   [value]="option.id">{{ option.nomLe }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                  <div class="lead">
+                    <label for="enjeuxOptions">Enjeux</label>
+                    <select
+                      id="enjeuxOptions"
+                      formControlName="enjeux_id"
+                      class="form-control"
+                      [(ngModel)]="selectedEntite.enjeux_id"
+                      (change)="onEnjeuxSelected($event)"
+                    >
+                      <option value="" disabled>Select an option</option>
+                      <option *ngFor="let option of Enjeuxs" [value]="option.id">{{ option.nomEn }}</option> <!-- Updated [value] attribute -->
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                  <div class="lead">
+                    <label for="natureOptions">Nature programme</label>
+                    <select id="natureOptions" formControlName="nature_programme_id" class="form-control"
+                    [(ngModel)]="selectedEntite.nature_programme_id"
+                    >
+                    (change)="natureSelected($event)"
+                      <option value="" disabled>Select an option</option>
+                      <option *ngFor="let option of natureOptions" [value]="option.id">{{ option.nomNt }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3">
+                  <div class="lead">
+                    <label for="Typeagiles">Type Agile</label>
+                    <select id="Typeagiles" formControlName="type_agile_id" class="form-control">
+                      <option value="" disabled>Select an option</option>
+                      <option *ngFor="let option of Typeagiles"  [value]="option.id">{{ option.nom }}</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="lead">
+                    <label for="Priorites">Priorite</label>
+                    <select id="priorite_id" formControlName="priorite_id" class="form-control">
+                      <option value="" disabled>Select an option</option>
+                      <option *ngFor="let option of Priorites"  [value]="option.id">{{ option.nomPr }}</option>
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="lead">
+                    <label class="">Année</label>
+                    <input class="form-control" type="text" id="Année" formControlName="Année" />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="lead">
+                    <label class="">Wave n°</label>
+                    <input class="form-control" type="text" id="wave" formControlName="wave" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="lead">
+                    <label class="form-label">Réf.Sciforma</label>
+                    <input class="form-control" type="text" id="ref_sciforma" formControlName="ref_sciforma"
+                   >
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="lead">
+                    <label class="form-label" for="investisementOptions">Type investisement</label>
+                    <select id="investisementOptions" formControlName="type_investisement_id" class="form-select">
+                      <option value="" disabled selected>Select an option</option>
+                      <option *ngFor="let option of investisementOptions" [value]="option.id">{{ option.nominvestisement }}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="row">
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="lead">
+                        <label class="form-label">Date Lancement</label>
+                        <div>
+                          <input class="form-control" type="text" id="date_lancement" formControlName="date_lancement" >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-5">
+                      <div class="lead">
+                        <label class="form-label">Date Cloture</label>
+                        <div>
+                          <input class="form-control" type="text" id="date_cloture" formControlName="date_cloture" >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="lead">
+                        <label class="form-label">Date Copro#1</label>
+                        <div>
+                          <input class="form-control" type="text" id="copro_1" formControlName="copro_1"  >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-5">
+                      <div class="lead">
+                        <label class="form-label">Date Copro#2:</label>
+                        <div>
+                          <input class="form-control" type="text" id="copro_2" formControlName="copro_2"   >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="mb-10">
+                      <label class="form-label fw-bold">Member Type:</label>
+                      <div class="contenue-list">
+                        <div class="list-checkbox">
+                          <ul>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="initiative_anne_en_cours"
+                                formControlName="initiative_anne_en_cours" />
+                              <span class="form-check-label">Nouvelle initiative</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="filiale" formControlName="filiale" />
+                              <span class="form-check-label">Fillale</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="top_15" formControlName="top_15"  />
+                              <span class="form-check-label">Data</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" value="4" id="hors_feuille_de_route "
+                                formControlName="hors_feuille_de_route " readonly/>
+                              <span class="form-check-label">Hors Feuille de route</span>
+                            </li>
+
+                            <li>
+                              <input class="form-check-input" type="checkbox" value="5"
+                                id="reconduction_annee_prochaine" formControlName="reconduction_annee_prochaine" />
+                              <span class="form-check-label"> A mettre à jour</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="list-checkbox">
+                          <ul>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="urban_sociale_techno"
+                                formControlName="urban_sociale_techno"  readonly/>
+                              <span class="form-check-label">Urban Socle Techno</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="sdi" formControlName="sdi" />
+                              <span class="form-check-label">ope</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="transverse"
+                                formControlName="transverse"  readonly/>
+                              <span class="form-check-label">Transverse</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="transverse"
+                                formControlName="transverse" readonly />
+                              <span class="form-check-label">Dématériallisation</span>
+                            </li>
+                            <li>
+                              <input class="form-check-input" type="checkbox" id="Digital" formControlName="Digital"  />
+                              <span class="form-check-label">Digital</span>
+                            </li>
+                          </ul>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-outline w-50 mb-4">
+                  <textarea class="form-control" id="description" formControlName="description" rows="3"
+                  readonly ></textarea>
+
+                </div>
+
+                <div class="form-outline w-50 mb-4">
+                  <textarea class="form-control" id="textAreaExample5" rows="3" id="actions"
+                    formControlName="actions" readonly></textarea>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+
+              <!-- <button type="button" class="btn btn-primary" (click)="updateEnjeux()">Modifier</button> -->
+
+
+            </form>
+

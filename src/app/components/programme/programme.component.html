@@ -17,9 +17,7 @@
     <div class="row g-3">
       <div class=" col-md-5">
         <div class="mt-2" >
-          {{programmeid}}
 
-          {{libelleinitiative}}
         </div>
         <h1 for="montantOption" class="mb-3">Programme</h1>
         <select id="montantOption" (change)="selectIdProgramme($event)" formControlName="lead_id" class="form-select">
@@ -65,12 +63,7 @@
             </ul>
               <div class="card-body">
 
-                <!-- <app-project [initiative]="[libelleinitiative]" [selectIdProgramme]="programmeid"   routerLink="project"></app-project>
 
-
-
-
-                <app-budgets   routerLink="Budgets" ></app-budgets> -->
 
                 <router-outlet></router-outlet>
 

@@ -27,12 +27,25 @@
 }
 .lead {
   display: flex;
-  width: 100%;
+  width: 28%;
   justify-content: space-around;
   align-items: center;
-
   margin-bottom: 20px;
 }
+/* Use flexbox to display the .lead2 divs on the same line */
+
+
+
+
+.lead2 > div {
+  width: 100%;
+}
+
+/* Add these styles to your component's CSS or a global stylesheet */
+
+/* Style for the container element */
+
+/* Define styles for screens with a minimum width of 768px */
 
 
 .priorité label {
@@ -82,7 +95,7 @@ ul li{
  .Budget {flex-wrap: wrap;
 
 
-  justify-content: space-between ;}
+}
 
 
 
@@ -120,13 +133,6 @@ color: #119573;
 font-weight: 800;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 
 
 label.Régie {
@@ -152,7 +158,7 @@ label.Régie {
 
 
 
-  .TOTAL label {
+  /* .TOTAL label {
     width: 97px;
     text-align: center;
     font-size: 11px;
@@ -168,7 +174,7 @@ label.Régie {
     align-items: center;
 
     margin: 13px 17px 7px 15px;
-  }
+  } */
   .nav {
     display: flex;
     list-style: none;
@@ -194,6 +200,10 @@ label.Régie {
   }
 
 
+  /* .Hors {
+    display: flex;
+
+} */
 
 
 
@@ -205,7 +215,50 @@ label.Régie {
 
 
 
+.Hors {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+}
 
+.salariale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.TOTAL {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.TOTAL label {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.TOTAL input.form-control {
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.KMAD {
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  margin-top: 5px;
+}
 
 
 

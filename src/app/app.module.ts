@@ -64,6 +64,11 @@ import { FourthChartDataComponent } from './components/fourth-chart-data/fourth-
 import { PopuppsolitionAdminComponent } from './components/popuppsolition-admin/popuppsolition-admin.component';
 import { PopuppsolitionUserComponent } from './components/popuppsolition-user/popuppsolition-user.component';
 import { MettreJourComponent } from './components/mettre-jour/mettre-jour.component';
+import { VueGlobalComponent } from './components/vue-global/vue-global.component';
+import { ParametreComponent } from './components/parametre/parametre.component';
+import { BudgetsMajourComponent } from './components/budgets-majour/budgets-majour.component';
+import { CaraMajourComponent } from './components/cara-majour/cara-majour.component';
+import { ProgramAjourComponent } from './components/program-ajour/program-ajour.component';
 
 
 
@@ -125,6 +130,11 @@ import { MettreJourComponent } from './components/mettre-jour/mettre-jour.compon
     BudgetsComponent,
     ConsulterComponent,
     ProjetComponent,
+    VueGlobalComponent,
+    ParametreComponent,
+    BudgetsMajourComponent,
+    CaraMajourComponent,
+    ProgramAjourComponent,
   ],
   imports: [
     BrowserModule,

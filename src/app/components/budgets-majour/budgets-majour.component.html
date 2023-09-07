@@ -1,0 +1,256 @@
+
+
+
+
+            <div  class="section">
+
+
+
+
+
+              <h1>2.1. Budget J/h : </h1>
+              <div  class="d-flex justify-content-end mb-3">
+                <div class="dt-buttons btn-group flex-wrap">
+                  <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+                    data-bs-target="#verticalycenteredBJH" title="Import">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+                    alt="Import">
+                  </button>
+                  </div>
+                  </div>
+              <div class="row Budget  ">
+
+    <span class="col-md-2" *ngFor="let item of fetchedEntites">
+      <div class="Budgets" *ngIf="item.type != 'forfait' " >
+        <label class="CORPO">{{ item?.nom }}</label>
+        <div class="card-copro">
+          <ng-container *ngIf="item.editMode; else cardContent">
+            <form [formGroup]="updateForm" (ngSubmit)="updateEntite(item)">
+              <ul *ngIf="item.type === 'EI'">
+                <li>
+                  <span class="form-check-label">Interne</span>
+                  <input class="form-control" type="text" formControlName="interne" />
+                </li>
+                <li>
+                  <span class="form-check-label">Externe</span>
+                  <input class="form-control" type="text" formControlName="externe" />
+                </li>
+              </ul>
+              <ul *ngIf="item.type === 'regie'">
+                <li>
+                  <span class="form-check-label">Regie</span>
+                  <input class="form-control" type="text" formControlName="regie" />
+                </li>
+              </ul>
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button (click)="cancelEditMode(item)" class="btn btn-danger">Cancel</button>
+            </form>
+          </ng-container>
+          <ng-template #cardContent>
+            <ul *ngIf="item.type === 'EI'">
+              <li>
+                <span class="form-check-label">Interne</span>
+                {{ item.interne }}
+              </li>
+              <li>
+                <span class="form-check-label">Externe</span>
+                {{ item.externe }}
+              </li>
+            </ul>
+            <ul *ngIf="item.type === 'regie'">
+              <li>
+                <span class="form-check-label">Regie</span>
+                {{ item.regie }}
+              </li>
+            </ul>
+            <div class="text-center"> <!-- Add text-center class here -->
+
+            <button (click)="toggleEditMode(item)" class="btn btn-primary">Edit</button>
+            <button (click)="deleteEntite(item)" class="btn btn-danger">Delete</button>
+
+          </div>
+          </ng-template>
+        </div>
+      </div>
+    </span>
+
+
+
+
+
+              </div>
+
+
+              <h2>2.2. Budget CTB : </h2>
+
+
+
+
+              <div class="">
+                <span  class="lead2">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="d-flex align-items-center">
+                      <label class="Régie">Régie :</label>
+                      <div>
+                        <input class="form-control" type="text"   [(ngModel)]="totalEntiteForProjet" readonly />
+                      </div>
+                      <label class="KMAD">KMAD</label>
+                    </div>
+                    </div>
+                    <ng-container  *ngFor="let item of fetchedEntites">
+                        <ng-container *ngIf="item.type === 'regie'">
+                          <div  class="col-md-4" >
+                            <div class="d-flex align-items-center">
+                              <label class="Régie">Contrib &{{item.nom}} :</label>
+                              <div>
+                                <input class="form-control mb-3" type="text"  value="{{ item.regie * item.TJM_regie }}"  readonly />
+                              </div>
+                              <label class="KMAD">KMAD</label>
+
+                            </div>
+                          </div>
+
+                        </ng-container>
+
+
+                    </ng-container>
+                    <ng-container  *ngFor="let item of fetchedEntites">
+
+                        <ng-container *ngIf="item.type === 'forfait'">
+                          <div class="col-md-4" >
+                            <div class="d-flex align-items-center">
+                            <label class="Régie">{{ item.nom }}</label>
+                            <div>
+                              <!-- formControlName="contribValue" -->
+                              <input class="form-control" type="text"  [value]="item.forfait"  placeholder="0" readonly />
+                            </div>
+                            <label class="KMAD">KMAD</label>
+                          </div>
+                        </div>
+                        </ng-container>
+
+
+                    </ng-container>
+
+                  </div>
+                </span>
+
+
+
+
+
+
+              </div>
+
+
+              <h3>2.3. Commentaire sur la répartition budgétaire : </h3>
+
+
+              <div class="row  ">
+
+                <div class=" col-md-10 ">
+
+
+                  <div class="form-group green-border-focus">
+
+                    <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
+
+
+
+              <div class="col-md-6">
+                <div class="TOTAL">
+                  <label class="Régie">CTB  (Hors Masse salariale & Hors SGABS) : </label>
+                  <div>
+                    <input class="form-control" type="text"[value]="totalEntiteForProjet+total "     placeholder="0" readonly />
+                  </div>
+                  <label class="KMAD">KMAD</label>
+                </div>
+
+
+                <div class="TOTAL">
+                  <label class="Régie">CTB  (Hors Masse salariale & yc SGABS) : </label>
+                  <div>
+                    <input class="form-control" type="text" [value]="totalRegieTJMRegie+totalEntiteForProjet+total"   placeholder="0" readonly />
+                  </div>
+                  <label class="KMAD">KMAD</label>
+                </div>
+              </div>
+
+
+              <!-- <button type="button" class="btn btn-primary" (click)="navigateToMettreJour()">Modifier</button> -->
+
+
+            </div>
+
+
+
+
+
+       
+<div class="modal fade" id="verticalycenteredBJH" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New solition user</h5>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+      </div>
+      <div class="modal-body text-center">
+        <div class="drop-container" >
+
+
+          <form  enctype="multipart/form-data"  [formGroup]="newone" >
+            <div>
+              <label>Nom Solition</label>
+              <select class="dropdown-solition mb-2" id="budgets" (change)="onSolutionSelect($event)">
+                <option  value="">Select solition</option>
+                <option  *ngFor="let option of budgets" [value]="option.id">{{ option.nom }}</option>
+              </select>
+            </div>
+
+            <div *ngIf="receivedData" >
+              <ng-container *ngIf="getone?.type === 'EI'" >
+                <div class="popup_solition">
+                <input type="text"  class="form-control mb-2" formControlName="interne" [value]="getone?.interne" placeholder="interne">
+
+
+                <input  class="form-control mb-2" type="text" formControlName="externe" [value]="getone?.externe" placeholder="externe">
+              </div>
+              </ng-container>
+              <ng-container *ngIf="getone?.type === 'regie'">
+                <div class="popup_solition">
+                <input type="text" formControlName="regie" [value]="getone?.regie" placeholder="regie">
+              </div>
+              </ng-container>
+              <ng-container *ngIf="getone?.type === 'forfait'">
+                <div class="popup_solition">
+                <input type="text" formControlName="forfait" [value]="getone?.forfait" placeholder="forfait">
+              </div>
+              </ng-container>
+            </div>
+
+
+
+          </form>
+      </div>
+      <div class="modal-footer">
+
+
+        <button class="btn btn-primary" aria-label="Close" type="submit" (click)="onUpdatepopupadmin()"  data-bs-dismiss="modal">
+          Enregistrer
+        </button>
+        <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="clearPopupData()">Cancel</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

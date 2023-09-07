@@ -46,6 +46,11 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { ProjetComponent } from './pages/projet/projet.component';
 import { ProjectComponent } from './components/project/project.component';
 import { BudgetsComponent } from './components/budgets/budgets.component';
+import { VueGlobalComponent } from './components/vue-global/vue-global.component';
+import { ParametreComponent } from './components/parametre/parametre.component';
+import { ProgramAjourComponent } from './components/program-ajour/program-ajour.component';
+import { CaraMajourComponent } from './components/cara-majour/cara-majour.component';
+import { BudgetsMajourComponent } from './components/budgets-majour/budgets-majour.component';
 
 const routes: Routes = [
   // { path: '', component: DashboardComponent ,canActivate: [AuthGuard]},
@@ -90,6 +95,7 @@ const routes: Routes = [
   { path: 'add-odd', component: AddOddComponent,canActivate: [AuthGuard] },
   { path: 'mettre_jour', component: MettreJourComponent,canActivate: [AuthGuard] },
   { path: 'consulter', component: ConsulterComponent,canActivate: [AuthGuard] },
+  { path: 'vue', component: VueGlobalComponent,canActivate: [AuthGuard] },
   {
     path: 'tables-data',
     component: TablesDataComponent,
@@ -106,8 +112,17 @@ const routes: Routes = [
   // { path: 'Budgets', component: BudgetsComponent,canActivate: [AuthGuard] },
   { path: 'consulter-projet', component: ProjetComponent,canActivate: [AuthGuard] },
 
+  { path: 'Parametre', component: ParametreComponent,canActivate: [AuthGuard] },
+ {
+  path: 'Mettre_Ajour',
+  component: ProgramAjourComponent,
+  canActivate: [AuthGuard],
+  children: [
 
-
+    { path: 'cara', component: CaraMajourComponent, canActivate: [AuthGuard] },
+    { path: 'Budget', component: BudgetsMajourComponent, canActivate: [AuthGuard] },
+  ]
+},
 
 ];
 

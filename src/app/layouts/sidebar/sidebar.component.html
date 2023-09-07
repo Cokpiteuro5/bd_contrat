@@ -5,12 +5,14 @@
        <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#"> <i class="bi bi-layout-text-window-reverse"></i><span>Exercice Budétaire</span><i class="bi bi-chevron-down ms-auto"></i> </a>
           <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-             <li> <a routerLink="/tables-data"> <i class="bi bi-circle"></i><span>Ajouter</span> </a></li>
+             <li *ngIf="userprofil === 'user'"> <a routerLink="/tables-data"> <i class="bi bi-circle"></i><span>Ajouter</span> </a></li>
              <!-- <li> <a routerLink="/tables-general"> <i class="bi bi-circle"></i><span>Département</span> </a></li> -->
              <!-- <li> <a routerLink="/list-odd"> <i class="bi bi-circle"></i><span>ODD</span> </a></li> -->
              <li> <a routerLink="/mettre_jour"> <i class="bi bi-circle"></i><span>Mettre à Jour</span> </a></li>
+             <li> <a routerLink="/Mettre_Ajour"> <i class="bi bi-circle"></i><span>Mettre</span> </a></li>
 
              <li> <a routerLink="/consulter"> <i class="bi bi-circle"></i><span>consulter</span> </a></li>
+             <li> <a routerLink="/vue"> <i class="bi bi-circle"></i><span>vue</span> </a></li>
 
           </ul>
        </li>
@@ -23,5 +25,12 @@
 
         </ul>
      </li> -->
+
+
+
+     <li class="nav-item" *ngIf="userprofil === 'admin'">
+      <a class="nav-link collapsed" data-bs-target="#tables-na" data-bs-toggle="collapse" routerLink="/Parametre"> <i class="bi bi-layout-text-window-reverse"></i><span>param</span><i class="bi bi-chevron-down ms-auto"></i> </a>
+
+   </li>
     </ul>
  </aside>

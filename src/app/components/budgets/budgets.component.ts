@@ -6,6 +6,7 @@ import { Entite } from 'src/app/models/entite.model';
 import { MorassService } from 'src/app/service/morass.service';
 import { PopUpService } from '../tables-data/services/pop-up.service';
 import { BudgetService } from 'src/app/service/budget.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-budgets',
@@ -14,6 +15,7 @@ import { BudgetService } from 'src/app/service/budget.service';
 })
 export class BudgetsComponent implements OnInit {
 
+  selectedBudgetId: number=0;
 
   calculatedTjmInterneValue: number = 0;
   calculatedTjmExterneValue: number = 0;
@@ -29,8 +31,8 @@ export class BudgetsComponent implements OnInit {
   // projetForm: FormGroup ;
   toppings: FormGroup;
   newone: FormGroup;
-  yourFormCTB:FormGroup;
-  updateFormCTB:FormGroup;
+  // yourFormCTB:FormGroup;
+  // updateFormCTB:FormGroup;
   poppupprojetForm!:FormGroup;
   idprojet : any = null;
 
@@ -79,7 +81,8 @@ export class BudgetsComponent implements OnInit {
          interne: null,
          externe: null,
          regie: null,
-         type: false,
+         type:'',
+         forfait :null,
         TJM_interne:null,
         TJM_externe:null,
         TJM_regie:null,
@@ -91,37 +94,37 @@ export class BudgetsComponent implements OnInit {
           interne: '',
           externe: '',
           regie: '',
+          forfait :'',
 
        });
 
       }
-      {
-        this.yourFormCTB = this.formBuilder.group({
-          nom: ['', Validators.required],
-          sans_interne: [null, Validators.required],
-          entite_id:'',
+      // {
+      //   this.yourFormCTB = this.formBuilder.group({
+      //     nom: ['', Validators.required],
+      //     sans_interne: [null, Validators.required],
+      //     entite_id:'',
 
 
-        });
-      }
-      {
-        this.updateFormCTB = this.formBuilder.group({
+      //   });
+      // }
+      // {
+      //   this.updateFormCTB = this.formBuilder.group({
 
-          sans_interne: '',
+      //     sans_interne: [''], // Ensure that it's properly initialized
 
 
-        });
-      }
+      //   });
+      // }
 
     }
 
   ngOnInit() {
 
-    // this.route.params.subscribe(params => {
-    //   const budgetId = +params['id'];
-    //  this.newone.patchValue({ projet_id: budgetId });
-    //   console.log("hero  projrct_id", budgetId)
-    // });
+    this.route.params.subscribe(params => {
+      this.selectedBudgetId = +params['id'];
+    });
+
 
     this.getAllEntiteOFOneProjet()
 
@@ -139,14 +142,137 @@ export class BudgetsComponent implements OnInit {
       this.userprofil = user.profil.nom
     }
 
+    // this.fetchctb();
     this.fetchBudgets();
-    this.fetchctb();
+    this.filterBudgets();
+
   }
 
 
 
+  // onSavepopupadmin() {
+  //   const {
+  //     nom,
+  //     interne,
+  //     externe,
+  //     regie,
+  //     type,
+  //     projet_id,
+  //     TJM_interne,
+  //     TJM_externe,
+  //     TJM_regie
+  //   } = this.toppings.value;
+
+  //   let newType = ''; // Initialize newType variable
+
+  //   if (regie === null) {
+  //     if (type == 'EI' || type == 'forfait') {
+  //       newType = 'EI'; // Set newType to 'EI' for 'EI' or 'forfait'
+  //     } else {
+  //       newType = 'forfait'; // Set newType to 'forfait' for other cases
+  //     }
+  //   } else {
+  //     newType = 'regie'; // Set newType to 'regie' when regie is not null
+  //   }
+
+  //   const dataToSave = {
+  //     nom,
+  //     interne,
+  //     externe,
+  //     regie,
+  //     type: newType, // Use the calculated newType value
+  //     projet_id,
+  //     TJM_interne,
+  //     TJM_externe,
+  //     TJM_regie
+  //   };
+
+  //   this.templateApiService.saveTemplateData(dataToSave)
+  //     .subscribe(({ success, entite }: any) => {
+  //       if (success) {
+  //         this.budgets = entite;
+  //         console.log('hahowa entite', entite);
+  //       }
+  //     });
+
+  //   this.toppings.reset();
+  // }
 
 
+  // onSavepopupadmin() {
+  //   const {
+  //     nom,
+  //     interne,
+  //     externe,
+  //     regie,
+  //     type,
+  //     Frofait,
+
+  //     montant_id,
+  //     projet_id,
+  //     TJM_interne,
+  //     TJM_externe,
+  //     TJM_regie
+  //   } = this.toppings.value;
+
+  //   if (regie == null) {
+  //     const newtype = type === true; // corrected logic here
+  //     console.log('regie null', newtype);
+  //     console.log('GEThj', {
+  //       nom,
+  //       interne,
+  //       externe,
+  //       regie,
+  //       type,
+
+
+  //       projet_id,
+  //       TJM_interne,
+  //       TJM_externe,
+  //       TJM_regie
+  //     });
+
+  //     this.templateApiService
+  //       .saveTemplateData({
+  //         nom,
+  //         interne,
+  //         externe,
+  //         regie,
+  //         type: newtype,
+  //         montant_id,
+  //         projet_id,
+  //         TJM_interne,
+  //         TJM_externe,
+  //         TJM_regie
+  //       })
+  //       .subscribe(({ success, entite }: any) => {
+  //         if (success) {
+  //           this.budgets = entite;
+  //           console.log('true entite with id project', entite);
+  //         }
+  //       });
+  //   } else {
+  //     console.log('false');
+  //     const newtype = type === false; // corrected logic here
+
+  //     console.log('regie not null', newtype);
+  //     this.templateApiService
+  //       .saveTemplateData({
+  //         nom,
+  //         interne,
+  //         externe,
+  //         regie,
+  //         type: newtype,
+  //         projet_id,
+  //         TJM_interne,
+  //         TJM_externe,
+  //         TJM_regie
+  //       })
+  //       .subscribe(({ success, entite }: any) => {
+  //       });
+  //   }
+  //   this.toppings.reset();
+  // }
 
   onSavepopupadmin() {
     const {
@@ -154,76 +280,49 @@ export class BudgetsComponent implements OnInit {
       interne,
       externe,
       regie,
-      type,
-      montant_id,
+      forfait,
       projet_id,
       TJM_interne,
       TJM_externe,
       TJM_regie
     } = this.toppings.value;
 
-    if (regie == null) {
-      const newtype = type === true; // corrected logic here
-      console.log('regie null', newtype);
-      console.log('GEThj', {
-        nom,
-        interne,
-        externe,
-        regie,
-        type,
-        montant_id,
-        projet_id,
-        TJM_interne,
-        TJM_externe,
-        TJM_regie
+    let newType = ''; // Initialize newType variable
+
+    if (regie === null) {
+      if (interne) {
+        newType = 'EI'; // Set newType to 'EI' when interne is checked
+      } else {
+        newType = 'forfait'; // Set newType to 'forfait' when interne is not checked
+      }
+    } else {
+      newType = 'regie'; // Set newType to 'regie' when regie is not null
+    }
+
+    const dataToSave = {
+      nom,
+      interne,
+      externe,
+      regie,
+      forfait,
+      type: newType, // Use the calculated newType value
+      projet_id,
+      TJM_interne,
+      TJM_externe,
+      TJM_regie
+    };
+
+    this.templateApiService.saveTemplateData(dataToSave)
+      .subscribe(({ success, entite }: any) => {
+        if (success) {
+          this.budgets = entite;
+          console.log('hahowa entite', entite);
+        }
       });
 
-      this.templateApiService
-        .saveTemplateData({
-          nom,
-          interne,
-          externe,
-          regie,
-          type: newtype,
-          montant_id,
-          projet_id,
-          TJM_interne,
-          TJM_externe,
-          TJM_regie
-        })
-        .subscribe(({ success, entite }: any) => {
-          if (success) {
-            this.budgets = entite;
-            console.log('true entite with id project', entite);
-          }
-        });
-    } else {
-      console.log('false');
-      const newtype = type === false; // corrected logic here
-
-      console.log('regie not null', newtype);
-      this.templateApiService
-        .saveTemplateData({
-          nom,
-          interne,
-          externe,
-          regie,
-          type: newtype,
-          montant_id,
-          projet_id,
-          TJM_interne,
-          TJM_externe,
-          TJM_regie
-        })
-        .subscribe(({ success, entite }: any) => {
-        });
-    }
     this.toppings.reset();
   }
 
-
-  totalValue = 0;
-  totalregievalue=0;
   getAllEntiteOFOneProjet(){
     this.route.params.subscribe(params => {
       const idofprojet = params['id'];
@@ -233,25 +332,32 @@ export class BudgetsComponent implements OnInit {
 
         this.budgetsOfOneEntite = data.entite;
 
-        this.budgetsOfOneEntite.forEach((budget: any) => {
-          const calculatedValue = (budget.TJM_externe * budget.externe) ;
-          // + (budget.TJM_interne * budget.interne)
-          const calculregievalue = (budget.TJM_regie * budget.regie) ;
 
-          this.totalValue += calculatedValue;
-          this.totalregievalue+=calculregievalue;
-        });
 
-        console.log("Total calculated value:", this.totalValue);
-        console.log("Total totalregievalue value:", this.totalregievalue);
+        this.calculateEntiteForProjet()
 
       });
+
     });
 
   }
+  totalExterneTJMExterne=0
+  calculateEntiteForProjet() {
+
+    this.totalExterneTJMExterne = 0;
+    for (const item of this.budgetsOfOneEntite) {
+      const externe = item.externe ?? 0; // Use 0 as the default value if externe is undefined
+      const TJM_externe = item.TJM_externe ?? 0; // Use 0 as the default value if TJM_externe is undefined
+      const result = externe * TJM_externe;
+      this.totalExterneTJMExterne += result;
+      console.log(`Item: ${item.nom}, Externe: ${externe}, TJM_externe: ${TJM_externe}, Result: ${result}`);
+
+    }
+  }
+
   onUpdatepopupadmin() {
 
-    const { interne, externe ,regie  } = this.newone.value
+    const { interne, externe ,regie ,forfait } = this.newone.value
 
     this.receivedData =true
     if (this.getone?.id) {
@@ -268,10 +374,12 @@ export class BudgetsComponent implements OnInit {
 
     this.morassService
       .updateTemplateDataById(this.getone?.id, {
-        interne, externe ,regie ,
+        interne, externe ,regie ,forfait,
         projet_id : this.idprojet,
 
       })
+
+
       .subscribe(({ success, entite }: any) => {
         if (success) {
           this.newone = entite;
@@ -279,6 +387,12 @@ export class BudgetsComponent implements OnInit {
 
         }
       });
+      this.newone.reset();
+
+      // Refresh the page
+      window.location.reload();
+
+      this.fetchBudgets();
 
 
   }
@@ -291,10 +405,6 @@ export class BudgetsComponent implements OnInit {
         this.getone = response.entite;
         console.log("jh id" ,response.entite );
 
-
-
-        this.saveBudgetsData();
-
       },
       (error: any) => {
         console.error('Error fetching template data:', error);
@@ -303,61 +413,72 @@ export class BudgetsComponent implements OnInit {
   }
 
 
-  saveBudgetsData() {
-    this.updatedCtbValue = '';
-
-    const dataToSave = {
-      budgets: this.budgets,
-      formDataArray: this.formDataArray,
-      getone:this.getone,
-      updatedCtbValue: this.updatedCtbValue
-
-    };
-
-    this.morassService.saveBudgetsData(dataToSave).subscribe(
+  filterBudgets() {
+    this.morassService.getTemplateData().subscribe(
       (response: any) => {
-        console.log('Data saved successfully:', response);
+        this.budgets = response.entite.filter((item: Entite) => item.projet_id === null);
+        console.log("Filtered budgets:", this.budgets);
+      },
+      (error: any) => {
+        console.error('Error fetching template data:', error);
       }
     );
   }
 
 
-  totalSum = 0
-  totalSum1=0
-
-  fetchctb() {
-    this.morassService.getBudgetCtb().subscribe(
-      ({ success, budget_ctb }: any) => {
-        console.log('ctb get:', success, budget_ctb);
-
-        if (success && budget_ctb) {
-          this.formDataArray = budget_ctb;
-          console.log('get ctbbbb', budget_ctb);
-
-          for (const data of budget_ctb) {
-            const { nom, sans_interne } = data;
-
-          }
-
-          const interneArray = budget_ctb.map((data: any) => data.sans_interne);
-          console.log('Interne Array:', interneArray);
-
-          const sommeinterne = interneArray.reduce((acc: number, sans_interne: number) => acc + sans_interne, 0);
-          this.sommeinterne1 = sommeinterne;
-          console.log('Somme Interne:', this.sommeinterne1);
 
 
+updateBudgetCtb(ctbId: number, updatedData: any) {
+  this.morassService.updateBudgetCtb(ctbId, updatedData).subscribe(
+    (data: any) => {
+      console.log(`CTB with ID ${ctbId} updated:`, data);
+    },
+    (error) => {
+      console.error(`Error updating CTB with ID ${ctbId}:`, error);
+    }
+  );
+}
 
-          this.totalSum = this.totalValue + this.totalregievalue + this.sommeinterne1;
-          this.totalSum1 = this.totalValue + this.sommeinterne1;
+
+  // totalSum = 0
+  // totalSum1=0
+
+  // fetchctb() {
+  //   this.morassService.getBudgetCtb().subscribe(
+  //     ({ success, budget_ctb }: any) => {
+  //       console.log('ctb get:', success, budget_ctb);
+
+  //       if (success && budget_ctb) {
+  //         this.formDataArray = budget_ctb;
+  //         console.log('get ctbbbb', budget_ctb);
+
+  //         for (const data of budget_ctb) {
+  //           const { nom, sans_interne } = data;
 
 
-          console.log('Somme Interne:', this.sommeinterne1);
-          console.log('Total Sum:', this.totalSum);
-        }
-      }
-    );
-  }
+  //         }
+  //         this.formDataArray = budget_ctb.filter((data: any) => data.projet_id === null);
+  //         console.log('Filtered CTB:', this.formDataArray);
+
+  //         const interneArray = budget_ctb.map((data: any) => data.sans_interne);
+  //         console.log('Interne Array:', interneArray);
+
+  //         const sommeinterne = interneArray.reduce((acc: number, sans_interne: number) => acc + sans_interne, 0);
+  //         this.sommeinterne1 = sommeinterne;
+  //         console.log('Somme Interne:', this.sommeinterne1);
+
+
+
+  //         // this.totalSum = this.totalValue + this.totalregievalue + this.sommeinterne1;
+  //         // this.totalSum1 = this.totalValue + this.sommeinterne1;
+
+
+  //         console.log('Somme Interne:', this.sommeinterne1);
+  //         console.log('Total Sum:', this.totalSum);
+  //       }
+  //     }
+  //   );
+  // }
 
 
 
@@ -383,18 +504,56 @@ export class BudgetsComponent implements OnInit {
     }
   }
 
-  updatectb(event: any,  id: number){
+  // updatectb(event: any,  id: number){
 
 
-    console.log('Input value:', event.target.value);
-    console.log('Input value:', id);
-    this.updatedCtbValue = event.target.value;
+  //   console.log('Input value:', event.target.value);
+  //   console.log('Input value:', id);
+  //   this.updatedCtbValue = event.target.value;
 
-    this.morassService.updateBudgetCtb(id, {sans_interne :  this.updatedCtbValue}).subscribe((data:any)=>{
-      console.log('ctb updated ');
+  //   this.morassService.updateBudgetCtb(id, {sans_interne :  this.updatedCtbValue}).subscribe((data:any)=>{
+  //     console.log('ctb updated ');
 
-    })
-  }
+  //   })
+  // }
+
+  // updatectb(event: any) {
+  //   console.log('Input value:', event.target.value);
+  //   console.log('ID:', this.selectedBudgetId); // Use the stored id
+
+  //   this.updatedCtbValue = event.target.value;
+
+  //   this.morassService.updateBudgetCtb(this.selectedBudgetId, { sans_interne: this.updatedCtbValue }).subscribe((data: any) => {
+  //     console.log('ctb hnaaa',  this.updatedCtbValue);
+  //   });
+  // }
+  // updatedSansInterneValues: { id: number; value: any }[] = [];
+
+  // updatectb(event: any, budgetctb: any) {
+  //   const updatedValue = event.target.value; // Retrieve the value from the input element
+  //   console.log('Input value:', updatedValue);
+  //   console.log('ID:', budgetctb.id); // Assuming id is present in budgetctb
+
+  //   // Update the formDataArray with the new sans_interne value
+  //   budgetctb.sans_interne = updatedValue;
+
+  //   // Update the value in updatedSansInterneValues array if it exists
+  //   const existingValueEntry = this.updatedSansInterneValues.find(entry => entry.id === budgetctb.id);
+  //   if (existingValueEntry) {
+  //     existingValueEntry.value = budgetctb.sans_interne;
+  //   } else {
+  //     this.updatedSansInterneValues.push({ id: budgetctb.id, value: budgetctb.sans_interne });
+  //   }
+
+  //   this.morassService.updateBudgetCtb(budgetctb.id, { sans_interne: budgetctb.sans_interne })
+  //     .subscribe((data: any) => {
+  //       console.log('ctb updated', data);
+  //     });
+  // }
+
+
+
+
 
 
 
@@ -411,19 +570,167 @@ export class BudgetsComponent implements OnInit {
     // Set the loading flag back to false when clearing the popup data
     // this.loading = false;
   }
-  onSaveCTB() {
-    const { nom, sans_interne } = this.yourFormCTB.value;
+  // onSaveCTB() {
+  //   const { nom, sans_interne } = this.yourFormCTB.value;
 
-    this.templateApiService.saveBudgetCtb({ nom, sans_interne }).subscribe(
-      (response: BudgetCtb) => {
-        this.formDataArray = [response];
-        console.log('hero69', response);
+  //   this.templateApiService.saveBudgetCtb({ nom, sans_interne }).subscribe(
+  //     (response: BudgetCtb) => {
+  //       this.formDataArray = [response];
+  //       console.log('hero69', response);
 
-      },
-      (error: any) => {
+  //     },
+  //     (error: any) => {
+  //     }
+  //   );
+  // }
+
+
+
+  saveBudgetsData() {
+    console.log(this.toppings);
+    console.log('id', this.idprojet);
+
+    // Update formDataArray with idprojet and updated sans_interne values
+    this.budgetsOfOneEntite.forEach((item: any) => {
+      console.log(item,'item');
+      if (item.type== 'EI') {
+        this.templateApiService.saveTemplateData({nom:item.nom ,externe: 0, interne:0, type:'EI',TJM_interne:item.TJM_interne,TJM_externe:item.TJM_externe}).subscribe((data:any)=>{
+          console.log(data,'new data after update ');
+
+        });
+
       }
-    );
+      if (item.type== 'regie') {
+        this.templateApiService.saveTemplateData({nom:item.nom ,regie: 0, interne:0, type:'regie',TJM_regie:item.TJM_regie}).subscribe((data:any)=>{
+          console.log(data,'new data after update ');
+
+        });
+
+      }
+      if (item.type== 'forfait') {
+        this.templateApiService.saveTemplateData({nom:item.nom ,forfait: 0,  type:'forfait'}).subscribe((data:any)=>{
+          console.log(data,'new data after update ');
+
+        });
+
+      }
+
+    });
+
+ // Show a success SweetAlert after the updates
+ Swal.fire({
+  title: 'Success!',
+  text: 'Budget data has been updated successfully.',
+  icon: 'success',
+  confirmButtonText: 'OK'
+}).then(() => {
+  this.router.navigate(['/tables-data']); // Replace 'tables-data' with the desired route
+});
+
   }
 
+
+  // saveBudgetsData() {
+  //   console.log(this.formDataArray);
+  //   console.log('id', this.idprojet);
+
+  //   // Update formDataArray with idprojet and updated sans_interne values
+  //   this.formDataArray.forEach((item: any) => {
+  //     item.idprojet = this.idprojet;
+
+  //     // Find the matching updated value in updatedSansInterneValues array
+  //     const updatedValueEntry = this.updatedSansInterneValues.find(entry => entry.id === item.id);
+  //     if (updatedValueEntry) {
+  //       item.sans_interne = updatedValueEntry.value;
+  //     }
+  //   });
+
+  //   // Update budgetctb array and update sans_interne property
+  //   this.formDataArray.forEach((item: any) => {
+  //     // Call the updateBudgetCtb method for each updated object
+  //     this.morassService.updateBudgetCtb(item.id, { projet_id: this.idprojet, sans_interne: item.sans_interne })
+  //       .subscribe((data: any) => {
+  //         console.log('ctb updated', data);
+  //       });
+  //   });
+
+  //   // Now both formDataArray and budgetctb arrays have 'idprojet' and 'sans_interne' updated
+  //   console.log(this.formDataArray, "formDataArray");
+  // }
+   // Calculate the totalEntiteForProjet based on fetched data
+  //  totalEntiteForProjet=0;
+  //  calculateEntiteForProjet() {
+  //   this.totalEntiteForProjet = 0;
+
+  //   for (const entity of this.budgetsOfOneEntite) {
+  //     // Make sure the properties are numbers, if not, convert them
+  //     const externeValue = Number(entity.externe) || 0;
+  //     const tjmExterneValue = Number(entity.TJM_externe) || 0;
+
+  //     this.totalEntiteForProjet += externeValue * tjmExterneValue;
+
+  //     // Debug output
+  //     console.log('Entity:', entity.nom);
+  //     console.log('externeValue:', externeValue);
+  //     console.log('tjmExterneValue:', tjmExterneValue);
+  //     console.log('Partial Total:', externeValue * tjmExterneValue);
+  //   }
+
+  //   // Debug output for the total
+  //   console.log('Total EntiteForProjet:', this.totalEntiteForProjet);
+  // }
+
+
+
+
+
+
+
+// totalForfaitSum=0
+// calculateForfaitSum(){
+//   this.totalForfaitSum = 0;
+
+//   for (const item of this.budgetsOfOneEntite) {
+
+//       this.totalForfaitSum += item.forfait;
+
+//   }
+// }
+calculateRegieTJMRegie(budgetItem: any): number {
+  if (budgetItem && budgetItem.type === 'regie') {
+    const result = budgetItem.regie * budgetItem.TJM_regie;
+    console.log(`Item: ${budgetItem.nom}, Regie: ${budgetItem.regie}, TJM_regie: ${budgetItem.TJM_regie}, Result: ${result}`);
+    return result;
+  }
+  return 0; // Return 0 if budgetItem is not defined or its type is not 'regie'
+}
+
+calculateTotalValue(): number {
+  let totalValue = this.totalExterneTJMExterne;
+
+  for (const budgetItem of this.budgetsOfOneEntite) {
+    if (budgetItem.type === 'regie') {
+      totalValue += this.calculateRegieTJMRegie(budgetItem);
+    }
+    if (budgetItem.type === 'forfait') {
+      totalValue += budgetItem.forfait ?? 0; // Use 0 as the default value if budgetItem.forfait is undefined
+    }
+  }
+
+  return totalValue;
+}
+calculateTotal1(): number {
+  let totalValue = this.totalExterneTJMExterne;
+
+  for (const budgetItem of this.budgetsOfOneEntite) {
+   
+    if (budgetItem.type === 'forfait') {
+      totalValue += budgetItem.forfait ?? 0; // Use 0 as the default value if budgetItem.forfait is undefined
+    }
+
+  }
+
+  return totalValue;
+}
 
 }

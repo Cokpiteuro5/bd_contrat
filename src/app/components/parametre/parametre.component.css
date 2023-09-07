@@ -16,14 +16,6 @@
 }
 
 
-
-
-.lead2 > div {
-  width: 100%;
-}
-
-
-
 .lead label {
   width: 97px;
   text-align: center;
@@ -128,12 +120,14 @@ color: #119573;
 font-weight: 800;
 }
 
-
-.popup_solition {
+.row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
 }
+
+
 
 label.Régie {
   font-weight: 700;
@@ -194,109 +188,21 @@ label.Régie {
     transition: border-bottom-color 0.3s ease;
   }
 
-  .nav-link.active-link {
-    border-bottom: 1px solid #3fcc9d;
+  .nav-link.active {
+    border-bottom-color: #3fcc9d;
     font-weight: bold;
   }
 
-  .nav-item.active {
-    border-bottom: 1px solid #3fcc9d;
-    font-weight: bold;  }
-
-  .nav-item2.active-link {
-    border-bottom: 1px solid #3fcc9d;
-    font-weight: bold;  }
 
 
 
 
 
 
-/* Customize modal styles */
-#verticalycenteredBJH .modal-dialog {
-  max-width: 400px; /* Adjust the width as needed */
-}
-
-.modal-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-.modal-body {
-  padding: 20px;
-}
-
-/* Style the dropdown */
-.dropdown-solition {
-  width: 60%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
-  font-size: 14px;
-}
-
-/* Style the input fields */
-.form-control {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #333;
-}
-
-/* Style the submit button */
-.modal-footer .btn-primary {
-  background-color: #007bff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.modal-footer .btn-primary:hover {
-  background-color: #0056b3;
-}
-
-/* Style the close button */
-.modal-header .btn-close {
-  color: #333;
-}
-
-.modal-header .btn-close:hover {
-  color: #000;
-}
-
-/* Style the modal overlay */
-.modal-backdrop {
-  opacity: 0.5;
-}
-
-/* Optional: Add a shadow to the modal content */
-.modal-content {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 
-/* Style the input fields for "Regie" and "Forfait" types */
-.popup_solition input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  color: #333;
-}
 
-/* Add margin to the input fields */
-.popup_solition input[type="text"] {
-  margin-bottom: 10px;
-}
+
 
 
 

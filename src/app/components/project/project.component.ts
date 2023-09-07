@@ -121,8 +121,8 @@ investisements:TypeInvestisement[]=[]
       actions: '',
       copro_1: '',
       copro_2: '',
-      date_lancement: null,
-      date_cloture: null,
+      date_lancement: '',
+      date_cloture: '',
       ref_sciforma: '',
       });
       }
@@ -234,6 +234,11 @@ this.fetchprogramme();
       console.log("Created programme:", createdprogramme);
     }
     );
+
+    window.alert("Data saved successfully!");
+
+    // Clear the form inputs
+    this.projetForm.reset();
   }
     clearPopupData() {
       // this.loading = false;

@@ -1,0 +1,287 @@
+
+
+<main id="main" class="main">
+  <div class="pagetitle">
+    <!-- <h1>param</h1> -->
+
+  </div>
+
+
+
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+
+          <div class="card-body">
+
+
+            <div >
+
+
+
+
+                <form [formGroup]="poppupprojetForm"  >
+
+                  <h1>2.1.create Caractéristiques  </h1>
+
+                  <div class="row mt-4">
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label >programme</label>
+                        <input class="form-control" type="text" formControlName="nomprog" >
+
+
+
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label >Lead</label>
+                        <input class="form-control" type="text" formControlName="nomLe" >
+
+
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="enjeuxOptions">Enjeux</label>
+
+                        <input class="form-control" type="text" formControlName="nomEn" >
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="lead">
+                        <label for="natureOptions">Nature programme</label>
+                        <input class="form-control" type="text"
+                          formControlName="nomNt"  >
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label for="PrioriteOptions">Priorite</label>
+
+                        <input class="form-control" type="text" formControlName="nomPr"
+                         >
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label class="form-label">Type investisement</label>
+
+                        <input class="form-control" type="text"  formControlName="nominvestisement" >
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="lead">
+                        <label for="TypeOptions">Type Agile</label>
+
+                        <input class="form-control" type="text"  formControlName="nom" >
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Lancement</label>
+                            <div>
+                              <input class="form-control" type="text" id="date_lancement" formControlName="date_lancement" readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Cloture</label>
+                            <div>
+                              <input class="form-control" type="text" id="date_cloture" formControlName="date_cloture" readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Copro#1</label>
+                            <div>
+                              <input class="form-control" type="text" id="copro_1" formControlName="copro_1"  readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-5">
+                          <div class="lead">
+                            <label class="form-label">Date Copro#2:</label>
+                            <div>
+                              <input class="form-control" type="text" id="copro_2" formControlName="copro_2"   readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div> -->
+                </form>
+
+
+                <h1>2.1.create Budget  </h1>
+                <ng-container >
+                  <div  class="d-flex justify-content-end mb-3">
+                    <div class="dt-buttons btn-group flex-wrap">
+                      <button class="btn buttons-excel buttons-html5 me-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#verticalycenteredCTB" title="Import">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMJJREFUSEvdlE0KwkAMRl/PIQjShb2Nl3HjDfRCPYib7oqC91AqDgxpyc+0peBsJ/le8mUmFSufamV9NMAJuAJNsIgOOAPtkKcBXsAuKJ7Ce6C2AO9C8ZT2LV7rYFNAKkwrYlYHRYBUjTsZCHVgAaw/I2EjizYH5K/WbWPettXBfwE8nzw8ZI/oyEZtBk9gH1X9xT+Ag9xFcsjDur4BxyDkDlym1rUEBHWnwzWLFgeUeq6ukPyy1HM3YBFLpIi1IWdDPx8jLBkZXJ+qAAAAAElFTkSuQmCC"
+                        alt="Import">
+                      </button>
+                      </div>
+                      </div>
+                    </ng-container>
+                <div class="row Budget  ">
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+                <button type="button" class="btn btn-primary"(click)="onSubmitprojectpopup()">Save</button>
+
+
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+<div class="modal fade" id="verticalycenteredCTB" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New solition admin</h5>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: msFilter"><path type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" d="M20 2H4c-1.103 0-2 .894-2 1.992v12.016C2 17.106 2.897 18 4 18h3v4l6.351-4H20c1.103 0 2-.894 2-1.992V3.992A1.998 1.998 0 0 0 20 2zm-3.293 11.293-1.414 1.414L12 11.414l-3.293 3.293-1.414-1.414L10.586 10 7.293 6.707l1.414-1.414L12 8.586l3.293-3.293 1.414 1.414L13.414 10l3.293 3.293z"></path></svg>
+      </div>
+      <div class="modal-body text-center">
+        <div class="drop-container" >
+
+
+
+
+
+<form [formGroup]="toppings" class="needs-validation" novalidate>
+
+  <!-- Nom Solution Field -->
+  <div class="form-group-solution">
+    <input type="text" id="nomSolution" class="form-control" formControlName="nom" placeholder="Nom Solution">
+  </div>
+
+  <!-- Interne/Externe Checkbox -->
+  <div class="form-group-solution form-check">
+    <input class="form-check-input" type="checkbox" id="interneCheckbox" formControlName="interne">
+    <label class="form-check-label" for="interneCheckbox">Interne/Externe</label>
+  </div>
+
+  <!-- Regie Checkbox -->
+  <div class="form-group-solution form-check">
+    <input class="form-check-input" type="checkbox" id="regieCheckbox" formControlName="regie">
+    <label class="form-check-label" for="regieCheckbox">Regie</label>
+  </div>
+
+  <!-- Forfait Checkbox -->
+  <div class="form-group-solution form-check">
+    <input class="form-check-input" type="checkbox" id="forfaitCheckbox" formControlName="forfait">
+    <label class="form-check-label" for="forfaitCheckbox">Forfait</label>
+  </div>
+
+  <!-- Fields for TJM Regie -->
+  <div *ngIf="toppings.get('regie')?.value">
+    <div class="form-group-solution">
+      <input type="number" id="tjmRegie" class="form-control" formControlName="TJM_regie" placeholder="TJM Regie">
+    </div>
+  </div>
+
+  <!-- Fields for TJM Externe and TJM Interne -->
+  <div *ngIf="toppings.get('interne')?.value">
+    <div class="form-group-solution">
+      <input type="number" id="tjmExterne" class="form-control" formControlName="TJM_externe" placeholder="TJM Externe">
+    </div>
+    <div class="form-group-solution">
+      <input type="number" id="tjmInterne" class="form-control" formControlName="TJM_interne" placeholder="TJM Interne">
+    </div>
+  </div>
+
+
+
+</form>
+
+
+      </div>
+      <div class="modal-footer">
+
+
+        <button class="btn btn-primary" aria-label="Close" type="submit"  (click)="onSavepopupadmin()" data-bs-dismiss="modal">
+          Enregistrer
+        </button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
